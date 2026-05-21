@@ -1,6 +1,6 @@
 <script>
-  /** @type {import("@prismicio/client").Content.ContentWidthMediaSlice} */
-  export let slice;
+    let { slice } = $props();
+/** @type {import("@prismicio/client").Content.ContentWidthMediaSlice} */
 </script>
 
 <section

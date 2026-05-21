@@ -1,6 +1,6 @@
 <script>
-  /** @type {import("@prismicio/client").Content.ThreeStepPlanSlice} */
-  export let slice;
+    let { slice } = $props();
+/** @type {import("@prismicio/client").Content.ThreeStepPlanSlice} */
 </script>
 
 <section

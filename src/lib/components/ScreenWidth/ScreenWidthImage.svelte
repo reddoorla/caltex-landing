@@ -1,5 +1,5 @@
 <script lang="ts">
-	  let { src = placeholder, field, altText = "", placeholderSide = "right", vimeoId = "", darken = false, backdrop = false, shorten = false, priority = false }: { src?: string; field: ImageField | null; altText?: unknown; placeholderSide?: unknown; vimeoId?: unknown; darken?: unknown; backdrop?: unknown; shorten?: unknown; priority?: unknown } = $props();
+	  let { src = placeholder, field, altText = "", placeholderSide = "right", vimeoId = "", darken = false, backdrop = false, shorten = false, priority = false, class: className = "" }: { src?: string; field: ImageField | null; altText?: unknown; placeholderSide?: unknown; vimeoId?: unknown; darken?: unknown; backdrop?: unknown; shorten?: unknown; priority?: unknown; class?: string } = $props();
 import type { ImageField } from "@prismicio/client";
 	import placeholder from "../../assets/images/background_placeholder.svg";
 	import ContentWidth from "../ContentWidth/ContentWidth.svelte";
@@ -77,7 +77,7 @@ import type { ImageField } from "@prismicio/client";
 	</div>
 	<div class="w-screen h-screen absolute top-0 left-0">
 	  <ContentWidth
-		class="{$$props.class || 'flex items-center justify-center'} h-full"
+		class="{className || 'flex items-center justify-center'} h-full"
 	  >
 		<slot />
 	  </ContentWidth>
