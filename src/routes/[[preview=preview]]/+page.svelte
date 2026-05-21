@@ -26,8 +26,7 @@
   });
 
     let { data } = $props();
-  let content = $state(data.page.data);
-  $effect(() => { data; content = data.page.data });
+  let content = $derived(data.page.data);
 </script>
 
 <svelte:window bind:innerWidth={viewpoortWidth} />
