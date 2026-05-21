@@ -19,3 +19,10 @@ test-results
 # OS / editor
 .DS_Store
 .vscode
+
+# canonical entries from @reddoorla/maintenance sync-configs
+coverage/
+.vitest-cache/
+.tsbuildinfo
+*.log
+.vercel/
