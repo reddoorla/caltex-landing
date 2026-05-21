@@ -1,1 +1,21 @@
 node_modules
+
+# Build artifacts
+.svelte-kit
+build
+.netlify
+dist
+
+# Test / tooling output
+playwright-report
+test-results
+.lighthouseci
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# OS / editor
+.DS_Store
+.vscode
