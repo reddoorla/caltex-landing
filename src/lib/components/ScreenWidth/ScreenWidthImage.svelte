@@ -6,12 +6,13 @@
   
 	export let src: string = placeholder;
 	export let field: ImageField | null;
-	export let altText = "background image";
+	export let altText = "";
 	export let placeholderSide = "right";
 	export let vimeoId = "";
 	export let darken = false;
 	export let backdrop = false;
 	export let shorten = false;
+	export let priority = false;
   
 	let viewportHeight: number;
 	let viewportWidth: number;
@@ -38,6 +39,9 @@
 		<img
 		  {src}
 		  alt={altText}
+		  loading={priority ? "eager" : "lazy"}
+		  fetchpriority={priority ? "high" : "auto"}
+		  decoding="async"
 		  class="absolute bottom-0 {placeholderSide}-0 h-full w-full object-cover  -z-10 {src ===
 		  placeholder
 			? 'lg:w-[45%] md:h-auto'
@@ -46,6 +50,9 @@
 	  {:else}
 		<PrismicImage
 		  {field}
+		  loading={priority ? "eager" : "lazy"}
+		  fetchpriority={priority ? "high" : "auto"}
+		  decoding="async"
 		  class="absolute  h-full w-full object-cover -z-10"
 		/>
 	  {/if}

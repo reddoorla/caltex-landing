@@ -75,8 +75,15 @@
     <PrismicImage
       class="w-3/5 pb-4 -translate-x-[20%] hidden xs:block md:hidden"
       field={content.aed}
+      loading="eager"
+      fetchpriority="high"
     />
-    <PrismicImage class="md:w-2/3 mb-48 md:mb-64" field={content.s1_title} />
+    <PrismicImage
+      class="md:w-2/3 mb-48 md:mb-64"
+      field={content.s1_title}
+      loading="eager"
+      fetchpriority="high"
+    />
     <div
       class="w-screen p-8 bg-primary text-dark absolute left-0 bottom-8 rounded-lg items-center flex"
     >
@@ -85,6 +92,8 @@
     <PrismicImage
       class="absolute bottom-8 right-0 w-1/2 translate-x-[20%] hidden md:block"
       field={content.aed}
+      loading="eager"
+      fetchpriority="high"
     />
   </ContentWidth>
 </section>

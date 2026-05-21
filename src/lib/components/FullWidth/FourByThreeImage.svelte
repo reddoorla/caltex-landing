@@ -3,8 +3,10 @@
     import Img from "@zerodevx/svelte-img"
     
     export let src = placeholder;
-    export let alt = "placeholder";
+    export let alt = "";
     export let label = "";
+    export let loading: "eager" | "lazy" = "lazy";
+    export let fetchpriority: "high" | "low" | "auto" = "auto";
     let rotationAngle = "36.8";
     let crossLength = "125%";
     
@@ -13,20 +15,22 @@
     <div class="w-full relative {$$props.class || ''}">
       <div class="w-full aspect-[4/3] {src===placeholder ? "border-light border-2 bg-light bg-opacity-25":""} rounded-sm flex items-center justify-center relative">
         {#if typeof src === "object"}
-          <Img 
+          <Img
             {src}
-            {alt} 
+            {alt}
             class="z-10 object-cover w-full h-full"
-            loading="lazy"
+            {loading}
+            {fetchpriority}
             decoding="async"
           />
 
         {:else}
-          <img 
+          <img
             {src}
-            {alt} 
+            {alt}
             class="z-10 object-cover w-full h-full"
-            loading="lazy"
+            {loading}
+            {fetchpriority}
             decoding="async"
           />
         {/if}

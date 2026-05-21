@@ -92,11 +92,11 @@
     </div>
   
     <div class="ml-8 h-6 w-16 flex justify-between z-10 absolute bottom-0 lg:bottom-[10%] xl:bottom-[20%] left-0">
-      <button onclick={slideRight} class="h-6 w-6 rounded-full border-[#C2D1D9] border-2 p-1 flex align-middle justify-center cursor-pointer transition-all duration-300 active:-translate-y-2  hover:bg-[#424B5A] hover:border-[#424B5A]">
-        <img alt='chevron-left' src={chevronLeft} class='-translate-x-[1px]' />
+      <button onclick={slideRight} aria-label="Previous slide" class="h-6 w-6 rounded-full border-[#C2D1D9] border-2 p-1 flex align-middle justify-center cursor-pointer transition-all duration-300 active:-translate-y-2  hover:bg-[#424B5A] hover:border-[#424B5A]">
+        <img alt='' aria-hidden="true" src={chevronLeft} class='-translate-x-[1px]' />
       </button>
-      <button onclick={slideLeft} class="h-6 w-6 rounded-full border-[#C2D1D9] border-2 p-1 flex align-middle cursor-pointer transition-all duration-300 active:-translate-y-2 justify-center hover:bg-[#424B5A] hover:border-[#424B5A]">
-        <img alt='chevron-right' src={chevronRight} class='translate-x-[1px]' />
+      <button onclick={slideLeft} aria-label="Next slide" class="h-6 w-6 rounded-full border-[#C2D1D9] border-2 p-1 flex align-middle cursor-pointer transition-all duration-300 active:-translate-y-2 justify-center hover:bg-[#424B5A] hover:border-[#424B5A]">
+        <img alt='' aria-hidden="true" src={chevronRight} class='translate-x-[1px]' />
       </button>
     </div>
   </div>

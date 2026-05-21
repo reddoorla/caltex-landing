@@ -63,6 +63,8 @@
 	<a href='/' onclick={()=>showNav=false}>
 		<PrismicImage
 			field={viewpoortWidth > 768 ? content.logo : content.logo_mark}
+			loading="eager"
+			fetchpriority="high"
 			class="w-auto h-10"
 		/>
 	</a>
@@ -118,6 +120,7 @@
   field={content.background_image}
   class="flex justify-between"
   backdrop
+  priority
 />
 {#if showNav}
 <div class="absolute w-screen h-lvh top-0 left-0 pt-48" transition:fade>
@@ -139,6 +142,7 @@
 		<a href='/' onclick={()=>showNav=false}>
 			<PrismicImage
 				field={viewpoortWidth > 768 ? content.logo : content.logo_mark}
+				loading="lazy"
 				class="w-auto h-10"
 			/>
 		</a>

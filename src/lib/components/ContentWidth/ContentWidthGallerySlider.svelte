@@ -95,11 +95,11 @@
         <ContentWidth class="h-full relative w-full">
           
 
-          <button on:click={slideLeft} class="absolute left-0 lg:top-auto lg:-left-2 h-6 w-6 rounded-full border-[#C2D1D9] border-2 p-1 flex align-middle justify-center cursor-pointer transition-all duration-500 hover:bg-[#424B5A] hover:border-[#424B5A] active:bg-black bump {sliderIndex===0 ? "opacity-20 pointer-events-none":""}">
-            <img alt='chevron-left' src={chevronLeft} class='-translate-x-[1px]' />
+          <button on:click={slideLeft} aria-label="Previous image" class="absolute left-0 lg:top-auto lg:-left-2 h-6 w-6 rounded-full border-[#C2D1D9] border-2 p-1 flex align-middle justify-center cursor-pointer transition-all duration-500 hover:bg-[#424B5A] hover:border-[#424B5A] active:bg-black bump {sliderIndex===0 ? "opacity-20 pointer-events-none":""}">
+            <img alt='' aria-hidden="true" src={chevronLeft} class='-translate-x-[1px]' />
           </button>
-          <button on:click={slideRight} class="absolute right-0 lg:right-auto lg:-left-2 lg:top-12  -translate-y-[0.7px] h-6 w-6 rounded-full border-[#C2D1D9] border-2 p-1 flex align-middle cursor-pointer transition-all duration-500 justify-center hover:bg-[#424B5A] hover:border-[#424B5A] active:bg-black bump {sliderIndex===imageArray.length-1 ? "opacity-20 pointer-events-none":""}">
-            <img alt='chevron-right' src={chevronRight} class='translate-x-[1px] ' />
+          <button on:click={slideRight} aria-label="Next image" class="absolute right-0 lg:right-auto lg:-left-2 lg:top-12  -translate-y-[0.7px] h-6 w-6 rounded-full border-[#C2D1D9] border-2 p-1 flex align-middle cursor-pointer transition-all duration-500 justify-center hover:bg-[#424B5A] hover:border-[#424B5A] active:bg-black bump {sliderIndex===imageArray.length-1 ? "opacity-20 pointer-events-none":""}">
+            <img alt='' aria-hidden="true" src={chevronRight} class='translate-x-[1px] ' />
           </button>
         </ContentWidth>
           

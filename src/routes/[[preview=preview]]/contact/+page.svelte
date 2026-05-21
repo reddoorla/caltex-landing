@@ -14,6 +14,8 @@ import ContentWidth from "$lib/components/ContentWidth/ContentWidth.svelte";
   <PrismicImage
     class="absolute h-[100vw] w-screen top-0 right-[4vw] lg:top-[5vw] lg:left-0 lg:h-[40vw] lg:w-[40vw] rounded-r-lg"
     field={content.s7_image}
+    loading="eager"
+    fetchpriority="high"
   />
   <ContentWidth
     class="h-full pt-[108vw] lg:py-[5vw] flex justify-end items-end text-dark relative"

@@ -141,8 +141,8 @@
 		
 	</ContentWidth>
 		{#if hasArrows}
-			<button onclick={slideRight} class="absolute top-1/2 -translate-y-1/2 left-6"><img src={chevronLeft} class="w-3 md:w-4" /></button>
-			<button onclick={slideLeft} class="absolute top-1/2 -translate-y-1/2 right-6"><img src={chevronRight} class="w-3 md:w-4" /></button>
+			<button onclick={slideRight} aria-label="Previous slide" class="absolute top-1/2 -translate-y-1/2 left-6"><img src={chevronLeft} alt="" aria-hidden="true" class="w-3 md:w-4" /></button>
+			<button onclick={slideLeft} aria-label="Next slide" class="absolute top-1/2 -translate-y-1/2 right-6"><img src={chevronRight} alt="" aria-hidden="true" class="w-3 md:w-4" /></button>
 		{/if}
     </div>
 </div>

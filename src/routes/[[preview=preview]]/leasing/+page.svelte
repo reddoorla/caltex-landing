@@ -18,8 +18,14 @@ import ScreenWidthImage from "$lib/components/ScreenWidth/ScreenWidthImage.svelt
     class="h-full flex flex-col items-start justify-start py-24"
     darken
     shorten
+    priority
   >
-    <PrismicImage class="w-full md:w-3/5" field={content.s5_title} />
+    <PrismicImage
+      class="w-full md:w-3/5"
+      field={content.s5_title}
+      loading="eager"
+      fetchpriority="high"
+    />
     
   </ScreenWidthImage>
 </section>

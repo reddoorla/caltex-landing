@@ -16,7 +16,7 @@
       <button class="w-full border-t-2 border-light cursor-pointer" onclick={() => activeAccordians[i] = !activeAccordians[i]}>
         <div class="h-20 p-8 w-full flex flex-row justify-between items-center">
           <p class="text-left">{label}</p>
-          <img src={chevronRight} alt="chevron right" class="transition-transform duration-300 ease-in-out h-5 opacity-80 hover:opacity-100 {activeAccordians[i] ? 'rotate-90' : ''}"/>
+          <img src={chevronRight} alt="" aria-hidden="true" class="transition-transform duration-300 ease-in-out h-5 opacity-80 hover:opacity-100 {activeAccordians[i] ? 'rotate-90' : ''}"/>
         </div>
         {#if activeAccordians[i]}
           <div transition:slide="{{ duration: 500 }}">

@@ -18,8 +18,18 @@ import ContentWidth from "$lib/components/ContentWidth/ContentWidth.svelte";
 >
   <ContentWidth class="flex flex-col md:flex-row">
     <div class="w-full md:w-1/2 flex flex-col items-start md:pr-5">
-      <PrismicImage class="w-full" field={content.s8_title} />
-      <PrismicImage class="w-2/3 -translate-x-[20%]" field={content.s8_aed} />
+      <PrismicImage
+        class="w-full"
+        field={content.s8_title}
+        loading="eager"
+        fetchpriority="high"
+      />
+      <PrismicImage
+        class="w-2/3 -translate-x-[20%]"
+        field={content.s8_aed}
+        loading="eager"
+        fetchpriority="high"
+      />
     </div>
     <div class="w-full md:w-1/2 flex flex-col md:pl-5">
       <div class="rich-text mt-4 text-dark">
