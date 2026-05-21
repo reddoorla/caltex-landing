@@ -4,8 +4,7 @@ import { PrismicImage } from "@prismicio/svelte";
 import ScreenWidthImage from "$lib/components/ScreenWidth/ScreenWidthImage.svelte";
 
  let { data } = $props();
-  let content = $state(data.page.data);
-  $effect(() => { data; content = data.page.data });
+  let content = $derived(data.page.data);
 </script>
 
 <ContentWidth class='flex flex-col items-start justify-start pt-48 pb-24'>

@@ -1,12 +1,12 @@
 <script lang="ts">
-    import placeholder from "$lib/assets/images/image_placeholder.svg";
+      let { src = placeholder, alt = "", label = "", loading = "lazy", fetchpriority = "auto" }: { src?: unknown; alt?: unknown; label?: unknown; loading?: "eager" | "lazy"; fetchpriority?: "high" | "low" | "auto" } = $props();
+import placeholder from "$lib/assets/images/image_placeholder.svg";
     import Img from "@zerodevx/svelte-img"
-    
-    export let src = placeholder;
-    export let alt = "";
-    export let label = "";
-    export let loading: "eager" | "lazy" = "lazy";
-    export let fetchpriority: "high" | "low" | "auto" = "auto";
+
+
+
+
+
     let rotationAngle = "36.8";
     let crossLength = "125%";
     
