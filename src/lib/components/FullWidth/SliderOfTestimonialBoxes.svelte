@@ -76,24 +76,25 @@
 
 <div use:swipe class="w-full h-full relative overflow-hidden">
   <div
-    class="flex flex-row flex-nowrap  {isSlideAnimated
+    class="flex flex-row flex-nowrap {isSlideAnimated
       ? 'transition-transform duration-500 ease-in-out'
       : ''}"
     style="width: {quintupledPropsArray.length * 100}%; transform: translateX(-{(sliderIndex +
-      testimonialBoxPropsArray.length) * sliderWidth}%);"
+      testimonialBoxPropsArray.length) *
+      sliderWidth}%);"
   >
-    {#each quintupledPropsArray as testimonialBoxProps}
+    {#each quintupledPropsArray as testimonialBoxProps, i (i)}
       <div class="h-full z-0" style="width: {sliderWidth}%;">
         <TestimonialBox {...testimonialBoxProps} />
       </div>
     {/each}
   </div>
 
-  <div class="ml-8 h-6 w-16 flex justify-between z-10 absolute bottom-0  left-0">
+  <div class="ml-8 h-6 w-16 flex justify-between z-10 absolute bottom-0 left-0">
     <button
       onclick={slideRight}
       aria-label="Previous testimonial"
-      class="h-6 w-6 rounded-full p-1 flex align-middle justify-center cursor-pointer transition-all duration-300 active:-translate-y-2  hover:bg-[#C2D1D9] "
+      class="h-6 w-6 rounded-full p-1 flex align-middle justify-center cursor-pointer transition-all duration-300 active:-translate-y-2 hover:bg-[#C2D1D9]"
     >
       <img
         alt=""
@@ -105,7 +106,7 @@
     <button
       onclick={slideLeft}
       aria-label="Next testimonial"
-      class="h-6 w-6 rounded-full p-1 flex align-middle cursor-pointer transition-all duration-300 active:-translate-y-2 justify-center hover:bg-[#C2D1D9] "
+      class="h-6 w-6 rounded-full p-1 flex align-middle cursor-pointer transition-all duration-300 active:-translate-y-2 justify-center hover:bg-[#C2D1D9]"
     >
       <img
         alt=""

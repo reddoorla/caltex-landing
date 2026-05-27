@@ -28,7 +28,7 @@
 </script>
 
 <div
-  class="{className || ''} w-full flex flex-col  p-2 sm:p-8 justify-{justify} text-{float}"
+  class="{className || ''} w-full flex flex-col p-2 sm:p-8 justify-{justify} text-{float}"
   style="background-color: {backgroundColor}"
 >
   {#if icon}

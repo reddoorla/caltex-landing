@@ -30,19 +30,6 @@
   );
 </script>
 
-<style>
-  a,
-  button {
-    cursor: pointer;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-</style>
-
 <div class="bump">
   {#if href}
     <a {href} onclick={onclick ?? click} class="{baseClasses} {passedClasses}">
@@ -58,3 +45,16 @@
     </button>
   {/if}
 </div>
+
+<style>
+  a,
+  button {
+    cursor: pointer;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+</style>

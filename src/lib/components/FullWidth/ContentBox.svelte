@@ -44,11 +44,15 @@
 </script>
 
 <div
-  class="w-full flex flex-col  p-2 sm:p-8 justify-{justify} text-{float} {className || ''}"
+  class="w-full flex flex-col p-2 sm:p-8 justify-{justify} text-{float} {className || ''}"
   style="background-color: {backgroundColor}"
 >
   {#if resolvedIcon}
-    <img src={resolvedIcon} alt={iconAltText} class="w-[70px] h-[70px] mb-7 {horizontalFloatMargin}" />
+    <img
+      src={resolvedIcon}
+      alt={iconAltText}
+      class="w-[70px] h-[70px] mb-7 {horizontalFloatMargin}"
+    />
   {/if}
   {#if labelText}
     <h6 class="mb-7">{labelText}</h6>

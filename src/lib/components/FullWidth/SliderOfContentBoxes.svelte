@@ -77,17 +77,18 @@
 
 <div use:swipe class="w-full h-full relative overflow-hidden">
   <div
-    class="flex flex-row flex-nowrap  {isSlideAnimated
+    class="flex flex-row flex-nowrap {isSlideAnimated
       ? 'transition-transform duration-500 ease-in-out'
       : ''}"
     style="width: {quintupledPropsArray.length * 100}%; transform: translateX(-{(sliderIndex +
-      contentBoxPropsArray.length) * sliderWidth}%);"
+      contentBoxPropsArray.length) *
+      sliderWidth}%);"
   >
     {#each quintupledPropsArray as contentBoxProps, i (i)}
       <div class="h-full z-0" style="width: {sliderWidth}%;">
         {#if isNumbered}
           <div
-            class="ml-2 sm:ml-7 -mb-1 mt-2 sm:-mb-4 w-9 h-9 bg-black rounded-full text-white flex justify-center items-center "
+            class="ml-2 sm:ml-7 -mb-1 mt-2 sm:-mb-4 w-9 h-9 bg-black rounded-full text-white flex justify-center items-center"
           >
             <p class="translate-y-[1px]">{(i % contentBoxPropsArray.length) + 1}</p>
           </div>
@@ -103,7 +104,7 @@
     <button
       onclick={slideRight}
       aria-label="Previous slide"
-      class="h-6 w-6 rounded-full border-[#C2D1D9] border-2 p-1 flex align-middle justify-center cursor-pointer transition-all duration-300 active:-translate-y-2  hover:bg-[#424B5A] hover:border-[#424B5A]"
+      class="h-6 w-6 rounded-full border-[#C2D1D9] border-2 p-1 flex align-middle justify-center cursor-pointer transition-all duration-300 active:-translate-y-2 hover:bg-[#424B5A] hover:border-[#424B5A]"
     >
       <img alt="" aria-hidden="true" src={chevronLeft} class="-translate-x-[1px]" />
     </button>

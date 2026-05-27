@@ -54,7 +54,7 @@
         loading={priority ? "eager" : "lazy"}
         fetchpriority={priority ? "high" : "auto"}
         decoding="async"
-        class="absolute bottom-0 {placeholderSide}-0 h-full w-full object-cover  -z-10 {src ===
+        class="absolute bottom-0 {placeholderSide}-0 h-full w-full object-cover -z-10 {src ===
         placeholder
           ? 'lg:w-[45%] md:h-auto'
           : ''}"

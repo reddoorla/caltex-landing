@@ -17,7 +17,7 @@
   <div
     class="w-full aspect-square {src === placeholder
       ? 'border-light border-2 bg-light bg-opacity-25'
-      : ''}  rounded-sm  flex items-center justify-center relative"
+      : ''}  rounded-sm flex items-center justify-center relative"
   >
     <img
       {src}

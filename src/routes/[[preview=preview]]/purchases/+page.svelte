@@ -1,28 +1,23 @@
-<script lang='ts'>
-import ContentWidth from "$lib/components/ContentWidth/ContentWidth.svelte";
+<script lang="ts">
+  import ContentWidth from "$lib/components/ContentWidth/ContentWidth.svelte";
 
-  import { PrismicImage, PrismicRichText } from "@prismicio/svelte";
+  import { PrismicImage } from "@prismicio/svelte";
   import DefaultButton from "$lib/components/Buttons/DefaultButton.svelte";
   import { fade } from "svelte/transition";
+  import { X } from "@lucide/svelte";
 
-let isRequestModalOpen = $state(false);
+  let isRequestModalOpen = $state(false);
 
   $effect(() => {
-    isRequestModalOpen;
     if (document.getElementsByTagName("body"))
       if (isRequestModalOpen) {
-        (
-          document.getElementsByTagName("body")[0] as HTMLElement
-        ).style.overflow = "hidden";
+        (document.getElementsByTagName("body")[0] as HTMLElement).style.overflow = "hidden";
       } else {
-        (
-          document.getElementsByTagName("body")[0] as HTMLElement
-        ).style.overflow = "auto";
+        (document.getElementsByTagName("body")[0] as HTMLElement).style.overflow = "auto";
       }
   });
 
-
-   let { data } = $props();
+  let { data } = $props();
   let content = $derived(data.page.data);
 </script>
 
@@ -46,7 +41,7 @@ let isRequestModalOpen = $state(false);
         onclick={() => (isRequestModalOpen = false)}
         aria-label="close"
       >
-        <i class="fa-sharp fa-solid fa-xl fa-close"></i>
+        <X size={24} />
       </button>
       <h2 class="text-white">
         <span>Choosing our&nbsp;</span><span> AED services&nbsp;</span><span>
@@ -54,9 +49,8 @@ let isRequestModalOpen = $state(false);
         ><span> for emergencies.</span>
       </h2>
       <h3 class="text-white">
-        Contact Ryan Kohen at <a
-          href="mailto:ryan@ryankohnen.com"
-          class="text-black">ryan@ryankohnen.com</a
+        Contact Ryan Kohen at <a href="mailto:ryan@ryankohnen.com" class="text-black"
+          >ryan@ryankohnen.com</a
         > <br /> or leave a message
         <a href="tel:210.273.7767" class="text-black">210.273.7767</a>
       </h3>
@@ -64,8 +58,8 @@ let isRequestModalOpen = $state(false);
   </div>
 {/if}
 
-<ContentWidth class='gap-20 flex flex-col items-start pt-48'>
-    <h1>AED Purchases</h1>
+<ContentWidth class="gap-20 flex flex-col items-start pt-48">
+  <h1>AED Purchases</h1>
 </ContentWidth>
 
 <section id="s3" class="w-screen mt-12 relative -mb-24">
@@ -75,18 +69,12 @@ let isRequestModalOpen = $state(false);
     loading="eager"
     fetchpriority="high"
   />
-  <ContentWidth
-    class="h-full pt-[108vw] lg:py-[5vw] flex justify-end items-end text-dark relative"
-  >
-    <div
-      class="lg:w-1/2 h-full flex flex-col justify-between items-start lg:gap-10"
-    >
+  <ContentWidth class="h-full pt-[108vw] lg:py-[5vw] flex justify-end items-end text-dark relative">
+    <div class="lg:w-1/2 h-full flex flex-col justify-between items-start lg:gap-10">
       <h3>{content.s3_title}</h3>
       <div class="flex flex-wrap gap-y-5 mt-12 lg:mt-0">
-        {#each content.s3_bullets as bullet}
-          <div
-            class="w-full h-12 flex items-center pr-10"
-          >
+        {#each content.s3_bullets as bullet, i (i)}
+          <div class="w-full h-12 flex items-center pr-10">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-7 w-7 mr-4"
@@ -100,7 +88,7 @@ let isRequestModalOpen = $state(false);
                 fill="#EA7724"
               />
             </svg>
-            <p class='font-medium translate-y-0.5'>{bullet.text}</p>
+            <p class="font-medium translate-y-0.5">{bullet.text}</p>
           </div>
         {/each}
       </div>
