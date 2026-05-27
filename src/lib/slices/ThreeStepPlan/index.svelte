@@ -1,5 +1,5 @@
 <script>
-  let { slice } = $props();
+  let { slice, ...rest } = $props();
   /** @type {import("@prismicio/client").Content.ThreeStepPlanSlice} */
 </script>
 

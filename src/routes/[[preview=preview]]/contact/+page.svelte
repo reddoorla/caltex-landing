@@ -1,7 +1,7 @@
 <script lang="ts">
   import ContentWidth from "$lib/components/ContentWidth/ContentWidth.svelte";
   import { PrismicImage, PrismicRichText } from "@prismicio/svelte";
-  let { data } = $props();
+  let { data, ...rest } = $props();
   let content = $derived(data.page.data);
 </script>
 
