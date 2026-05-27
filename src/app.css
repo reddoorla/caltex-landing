@@ -1,8 +1,55 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Tailwind CSS v4 configuration */
+@import "tailwindcss";
 
+@theme {
+  /* Breakpoints — Tailwind 4 namespace (NOT --screen-*) */
+  --breakpoint-xs: 380px;
+  --breakpoint-sm: 560px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1340px;
+  --breakpoint-xxl: 1620px;
 
+  /* Colors */
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-black: #000;
+  --color-white: #fff;
+  --color-light: #ebebeb;
+  --color-dark: #131313;
+  --color-primary: #ea7724;
+
+  /* Easing utilities (ease-*) */
+  --ease-in-expo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-fast-slow: cubic-bezier(0.5, 0, 0, 1);
+
+  /* Custom heights */
+  --height-screen-75: 75vh;
+  --height-screen-50: 50vh;
+  --height-screen-25: 25vh;
+  --height-screen-10: 10vh;
+  --height-screen-5: 5vh;
+  --height-112: 28rem;
+  --height-128: 32rem;
+  --height-144: 36rem;
+  --height-160: 40rem;
+  --height-192: 48rem;
+  --height-256: 64rem;
+  --height-384: 96rem;
+}
+
+/* Safelist — classes applied dynamically (e.g. from Prismic) the scanner can't see */
+@source inline("justify-{center,start,end,between,around}");
+@source inline("sm:justify-{center,start,end}");
+@source inline("hidden");
+@source inline("aspect-{square,video}");
+@source inline("aspect-[16/9]");
+@source inline("aspect-[4/3]");
+@source inline("translate-y-1");
+@source inline("w-[360px]");
+@source inline("md:w-1/2");
+@source inline("h-[40vw]");
 
 body{
     font-family: "Helvetica Neue LT Std", "helvetica", sans-serif;
@@ -15,7 +62,7 @@ body{
     overflow-y: auto;
 }
 
-body::-webkit-scrollbar { 
+body::-webkit-scrollbar {
     display: none !important;  /* Safari and Chrome */
 }
 body::-webkit-scrollbar {
@@ -169,30 +216,30 @@ span{
     font-weight: 700;
     line-height: 44px; /* 121.212% */
     }
-    
+
     h2{
         font-size: 32px;
     }
-    
+
     h3{
         font-size: 20px;
     font-style: normal;
     font-weight: 700;
     }
-    
+
     h4{
         font-size: 28px;
     }
-    
+
     h5{
 
     }
-    
-    
+
+
     p{
         font-size: 16px;
     }
-    
+
 
 
 }
@@ -204,31 +251,31 @@ span{
     font-weight: 700;
     line-height: 44px; /* 121.212% */
     }
-    
+
     h2{
         font-size: 28px;
 
     }
-    
+
     h3{
       font-size:18px;
     }
-    
+
     h4{
         font-size: 28px;
     }
-    
+
     h5{
-    
+
     }
-    
-    
+
+
     p{
         font-size: 16px;
     }
-    
 
-    
+
+
 }
 
 
@@ -255,7 +302,7 @@ span{
 
 ::placeholder{
     color: #C2D1D9 !important;
-    
+
 }
 
 input[type='textarea']::placeholder{
