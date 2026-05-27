@@ -3,7 +3,7 @@
 import linkArrow from "$lib/assets/icons/wireframe-link-arrow-right.svg"
 
 
-    let isLinkArrowActive=false;
+    let isLinkArrowActive = $state(false);
 
 </script>
 
