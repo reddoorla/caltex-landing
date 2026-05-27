@@ -3,7 +3,7 @@
   import { PrismicImage } from "@prismicio/svelte";
   import ScreenWidthImage from "$lib/components/ScreenWidth/ScreenWidthImage.svelte";
 
-  let { data } = $props();
+  let { data, ...rest } = $props();
   let content = $derived(data.page.data);
 </script>
 
