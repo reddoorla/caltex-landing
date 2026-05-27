@@ -1,31 +1,23 @@
 <script lang="ts">
   import ContentWidth from "$lib/components/ContentWidth/ContentWidth.svelte";
-  import ScreenWidthImage from "$lib/components/ScreenWidth/ScreenWidthImage.svelte";
-  import { PrismicImage, PrismicRichText } from "@prismicio/svelte";
-  import DefaultButton from "$lib/components/Buttons/DefaultButton.svelte";
+  import { PrismicImage } from "@prismicio/svelte";
   import { fade } from "svelte/transition";
-
-
+  import { X } from "@lucide/svelte";
 
   let viewpoortWidth = $state(1024);
 
   let isRequestModalOpen = $state(false);
 
   $effect(() => {
-    isRequestModalOpen;
     if (document.getElementsByTagName("body"))
       if (isRequestModalOpen) {
-        (
-          document.getElementsByTagName("body")[0] as HTMLElement
-        ).style.overflow = "hidden";
+        (document.getElementsByTagName("body")[0] as HTMLElement).style.overflow = "hidden";
       } else {
-        (
-          document.getElementsByTagName("body")[0] as HTMLElement
-        ).style.overflow = "auto";
+        (document.getElementsByTagName("body")[0] as HTMLElement).style.overflow = "auto";
       }
   });
 
-    let { data } = $props();
+  let { data } = $props();
   let content = $derived(data.page.data);
 </script>
 
@@ -51,7 +43,7 @@
         onclick={() => (isRequestModalOpen = false)}
         aria-label="close"
       >
-        <i class="fa-sharp fa-solid fa-xl fa-close"></i>
+        <X size={24} />
       </button>
       <h2 class="text-white">
         <span>Choosing our&nbsp;</span><span> AED services&nbsp;</span><span>
@@ -59,16 +51,15 @@
         ><span> for emergencies.</span>
       </h2>
       <h3 class="text-white">
-        Contact Ryan Kohen at <a
-          href="mailto:ryan@ryankohnen.com"
-          class="text-black">ryan@ryankohnen.com</a
+        Contact Ryan Kohen at <a href="mailto:ryan@ryankohnen.com" class="text-black"
+          >ryan@ryankohnen.com</a
         > <br /> or leave a message
         <a href="tel:210.273.7767" class="text-black">210.273.7767</a>
       </h3>
     </ContentWidth>
   </div>
 {/if}
-<div class='lg:h-12 xl:h-0'></div>
+<div class="lg:h-12 xl:h-0"></div>
 <section id="s1" class="h-screen w-screen overflow-hidden">
   <ContentWidth class="flex flex-col h-full items-start justify-end relative">
     <PrismicImage

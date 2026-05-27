@@ -1,14 +1,14 @@
-<script lang='ts'>
-import ContentWidth from "$lib/components/ContentWidth/ContentWidth.svelte";
-import { PrismicImage } from "@prismicio/svelte";
-import ScreenWidthImage from "$lib/components/ScreenWidth/ScreenWidthImage.svelte";
+<script lang="ts">
+  import ContentWidth from "$lib/components/ContentWidth/ContentWidth.svelte";
+  import { PrismicImage } from "@prismicio/svelte";
+  import ScreenWidthImage from "$lib/components/ScreenWidth/ScreenWidthImage.svelte";
 
- let { data } = $props();
+  let { data } = $props();
   let content = $derived(data.page.data);
 </script>
 
-<ContentWidth class='flex flex-col items-start justify-start pt-48 pb-24'>
-    <h1>AED LEASING</h1>
+<ContentWidth class="flex flex-col items-start justify-start pt-48 pb-24">
+  <h1>AED LEASING</h1>
 </ContentWidth>
 
 <section id="s5">
@@ -25,19 +25,14 @@ import ScreenWidthImage from "$lib/components/ScreenWidth/ScreenWidthImage.svelt
       loading="eager"
       fetchpriority="high"
     />
-    
   </ScreenWidthImage>
 </section>
 
 <section id="s2" class="w-screen mt-24 -mb-24">
   <ContentWidth class="flex flex-col items-start justify-start gap-8 lg:gap-12">
     <div class="w-full flex justify-center flex-wrap">
-      {#each content.s2_icons as icon, i}
-        <div
-          class="w-full md:w-1/2 pb-8 md:pb-10 {i % 2 == 0
-            ? 'md:pr-5'
-            : 'md:pl-5'}"
-        >
+      {#each content.s2_icons as icon, i (i)}
+        <div class="w-full md:w-1/2 pb-8 md:pb-10 {i % 2 == 0 ? 'md:pr-5' : 'md:pl-5'}">
           <div
             class="h-40 md:h-52 w-full bg-white text-primary flex flex-row justify-between items-center rounded-[7px] p-11 gap-11"
           >
@@ -48,7 +43,6 @@ import ScreenWidthImage from "$lib/components/ScreenWidth/ScreenWidthImage.svelt
       {/each}
     </div>
 
-      <h5 class="text-dark">{content.s2_closing_text}</h5>
-
+    <h5 class="text-dark">{content.s2_closing_text}</h5>
   </ContentWidth>
 </section>
