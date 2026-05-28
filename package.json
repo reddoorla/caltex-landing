@@ -20,7 +20,7 @@
     "@playwright/test": "^1.60.0",
     "@reddoorla/maintenance": "^0.13.0",
     "@slicemachine/adapter-sveltekit": "^0.3.96",
-    "@sveltejs/adapter-auto": "^7.0.1",
+    "@sveltejs/adapter-netlify": "^6.0.4",
     "@sveltejs/kit": "^2.61.1",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "@tailwindcss/vite": "^4.3.0",
