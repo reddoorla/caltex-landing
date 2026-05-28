@@ -4,8 +4,6 @@
   import { fade } from "svelte/transition";
   import { X } from "@lucide/svelte";
 
-  let viewpoortWidth = $state(1024);
-
   let isRequestModalOpen = $state(false);
 
   $effect(() => {
@@ -20,8 +18,6 @@
   let { data, ..._rest } = $props();
   let content = $derived(data.page.data);
 </script>
-
-<svelte:window bind:innerWidth={viewpoortWidth} />
 
 {#if isRequestModalOpen}
   <div

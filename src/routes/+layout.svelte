@@ -19,7 +19,7 @@
   /** @type {Props} */
   let { children, data, ..._rest } = $props();
 
-  let viewpoortWidth = $state(1024);
+  let viewportWidth = $state(1024);
   let isRequestModalOpen = $state(false);
   let showNav = $state(false);
 
@@ -50,13 +50,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no" />
 </svelte:head>
 
-<svelte:window bind:innerWidth={viewpoortWidth} />
+<svelte:window bind:innerWidth={viewportWidth} />
 <main>
   <nav class="w-screen absolute top-0 left-0 z-20">
     <ContentWidth class="flex flex-row justify-between items-center h-36">
       <a href="/" onclick={() => (showNav = false)}>
         <PrismicImage
-          field={viewpoortWidth > 768 ? content.logo : content.logo_mark}
+          field={viewportWidth > 768 ? content.logo : content.logo_mark}
           loading="eager"
           fetchpriority="high"
           class="w-auto h-10"
@@ -148,7 +148,7 @@
       <ContentWidth class="flex flex-col md:flex-row justify-between items-center gap-8">
         <a href="/" onclick={() => (showNav = false)}>
           <PrismicImage
-            field={viewpoortWidth > 768 ? content.logo : content.logo_mark}
+            field={viewportWidth > 768 ? content.logo : content.logo_mark}
             loading="lazy"
             class="w-auto h-10"
           />
