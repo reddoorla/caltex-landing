@@ -18,7 +18,7 @@
     "@axe-core/playwright": "^4.11.3",
     "@lhci/cli": "^0.15.1",
     "@playwright/test": "^1.60.0",
-    "@reddoorla/maintenance": "^0.11.2",
+    "@reddoorla/maintenance": "^0.13.0",
     "@slicemachine/adapter-sveltekit": "^0.3.96",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/kit": "^2.61.1",

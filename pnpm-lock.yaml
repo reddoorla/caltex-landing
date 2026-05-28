@@ -36,8 +36,8 @@ importers:
         specifier: ^1.60.0
         version: 1.60.0
       "@reddoorla/maintenance":
-        specifier: ^0.11.2
-        version: 0.11.2(jiti@2.7.0)(playwright-core@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(svelte@5.55.10(@typescript-eslint/types@8.60.0))(typescript@6.0.3)
+        specifier: ^0.13.0
+        version: 0.13.0(jiti@2.7.0)(playwright-core@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(svelte@5.55.10(@typescript-eslint/types@8.60.0))(typescript@6.0.3)
       "@slicemachine/adapter-sveltekit":
         specifier: ^0.3.96
         version: 0.3.96(@prismicio/types@0.2.9)(@sveltejs/kit@2.61.1(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.55.10(@typescript-eslint/types@8.60.0))(vite@8.0.14(@types/node@25.9.1)(jiti@2.7.0)))(svelte@5.55.10(@typescript-eslint/types@8.60.0))(typescript@6.0.3)(vite@8.0.14(@types/node@25.9.1)(jiti@2.7.0)))(prettier-plugin-svelte@4.0.1(prettier@3.8.3)(svelte@5.55.10(@typescript-eslint/types@8.60.0)))(prettier@3.8.3)(svelte@5.55.10(@typescript-eslint/types@8.60.0))
@@ -780,10 +780,10 @@ packages:
       react: ^18.0 || ^19.0 || ^19.0.0-rc
       react-dom: ^18.0 || ^19.0 || ^19.0.0-rc
 
-  "@reddoorla/maintenance@0.11.2":
+  "@reddoorla/maintenance@0.13.0":
     resolution:
       {
-        integrity: sha512-UyFNUa260ZOJzVZgrt9i8JqDBwMQFD0Dm5T725OwZWogiIqyidxePa26o9gpZJn4mVVkfXpiKxVVDmgKCjyk8A==,
+        integrity: sha512-+Sk2HLuOqL4x7bkngxDFYFp6v5O+rvvYr5nB+d/az3RODjzGq+NuG3IlI4fRCQZD1nw8D8JjomOyj4cx1SJQnQ==,
       }
     engines: { node: ">=20" }
     hasBin: true
@@ -6883,7 +6883,7 @@ snapshots:
       react-dom: 19.2.6(react@19.2.6)
       react-promise-suspense: 0.3.4
 
-  "@reddoorla/maintenance@0.11.2(jiti@2.7.0)(playwright-core@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(svelte@5.55.10(@typescript-eslint/types@8.60.0))(typescript@6.0.3)":
+  "@reddoorla/maintenance@0.13.0(jiti@2.7.0)(playwright-core@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6)(svelte@5.55.10(@typescript-eslint/types@8.60.0))(typescript@6.0.3)":
     dependencies:
       "@axe-core/playwright": 4.11.3(playwright-core@1.60.0)
       "@eslint/js": 10.0.1(eslint@10.4.0(jiti@2.7.0))
