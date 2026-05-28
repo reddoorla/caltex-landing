@@ -17,7 +17,7 @@
       }
   });
 
-  let { data, ...rest } = $props();
+  let { data, ..._rest } = $props();
   let content = $derived(data.page.data);
 </script>
 

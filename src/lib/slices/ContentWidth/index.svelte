@@ -1,5 +1,5 @@
 <script>
-  let { slice, ...rest } = $props();
+  let { slice } = $props();
   /** @type {import("@prismicio/client").Content.ContentWidthMediaSlice} */
 </script>
 

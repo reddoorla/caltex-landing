@@ -17,7 +17,7 @@
    */
 
   /** @type {Props} */
-  let { children, data, ...rest } = $props();
+  let { children, data, ..._rest } = $props();
 
   let viewpoortWidth = $state(1024);
   let isRequestModalOpen = $state(false);
