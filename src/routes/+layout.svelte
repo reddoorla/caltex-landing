@@ -164,4 +164,6 @@
     </footer>
   {/if}
 </main>
-<PrismicPreview {repositoryName} />
+{#if !$page.url.pathname.startsWith("/dev/")}
+  <PrismicPreview {repositoryName} />
+{/if}
