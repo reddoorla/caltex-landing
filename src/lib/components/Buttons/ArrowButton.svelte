@@ -1,5 +1,5 @@
 <script>
-  let { text = "", href = "#", class: className = "", ...rest } = $props();
+  let { text = "", href = "#", class: className = "" } = $props();
   import linkArrow from "$lib/assets/icons/wireframe-link-arrow-right.svg";
 
   let isLinkArrowActive = $state(false);

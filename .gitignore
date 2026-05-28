@@ -26,3 +26,5 @@ coverage/
 .tsbuildinfo
 *.log
 .vercel/
+
+.reddoor-a11y/

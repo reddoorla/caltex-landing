@@ -1,5 +1,5 @@
 {
-  "name": "sveltekit-starter-prismic-minimal",
+  "name": "caltex",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -18,7 +18,7 @@
     "@axe-core/playwright": "^4.11.3",
     "@lhci/cli": "^0.15.1",
     "@playwright/test": "^1.60.0",
-    "@reddoorla/maintenance": "^0.10.2",
+    "@reddoorla/maintenance": "^0.11.2",
     "@slicemachine/adapter-sveltekit": "^0.3.96",
     "@sveltejs/adapter-auto": "^7.0.1",
     "@sveltejs/kit": "^2.61.1",
@@ -44,12 +44,17 @@
     "node": ">=20"
   },
   "dependencies": {
-    "@lucide/svelte": "^1.16.0",
+    "@lucide/svelte": "^1.17.0",
     "@prismicio/client": "^7.21.8",
     "@prismicio/svelte": "^2.2.1",
     "@zerodevx/svelte-img": "^2.1.2",
     "svelte-gestures": "^5.2.2",
     "svelte-select": "^5.8.3"
   },
-  "packageManager": "pnpm@10.33.1"
+  "packageManager": "pnpm@10.33.1",
+  "pnpm": {
+    "overrides": {
+      "@sveltejs/kit>cookie": "^0.7.0"
+    }
+  }
 }
