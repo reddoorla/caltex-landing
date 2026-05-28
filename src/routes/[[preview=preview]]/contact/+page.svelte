@@ -1,6 +1,7 @@
 <script lang="ts">
   import ContentWidth from "$lib/components/ContentWidth/ContentWidth.svelte";
   import { PrismicImage, PrismicRichText } from "@prismicio/svelte";
+  import { CONTACT } from "$lib/constants/contact";
   let { data, ..._rest } = $props();
   let content = $derived(data.page.data);
 </script>
@@ -39,7 +40,7 @@
               fill="#EA7724"
             />
           </svg>
-          <p class="font-medium translate-y-0.5">ryan@ryankohnen.com</p>
+          <p class="font-medium translate-y-0.5">{CONTACT.email}</p>
         </div>
         <div class="w-full h-12 flex items-center pr-10">
           <svg
@@ -55,7 +56,7 @@
               fill="#EA7724"
             />
           </svg>
-          <p class="font-medium translate-y-0.5">210.273.7767</p>
+          <p class="font-medium translate-y-0.5">{CONTACT.phoneDisplay}</p>
         </div>
       </div>
     </div>
