@@ -99,7 +99,7 @@
           ><span> for emergencies.</span>
         </h2>
         <h3 class="text-white">
-          Contact Ryan Kohen at <a href="mailto:ryan@ryankohnen.com" class="text-black"
+          Contact Ryan Kohnen at <a href="mailto:ryan@ryankohnen.com" class="text-black"
             >ryan@ryankohnen.com</a
           > <br /> or leave a message
           <a href="tel:210.273.7767" class="text-black">210.273.7767</a>

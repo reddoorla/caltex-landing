@@ -22,9 +22,6 @@ importers:
       "@zerodevx/svelte-img":
         specifier: ^2.1.2
         version: 2.1.2(rollup@4.60.4)(svelte@5.55.10(@typescript-eslint/types@8.60.0))
-      svelte-gestures:
-        specifier: ^5.2.2
-        version: 5.2.2
       svelte-select:
         specifier: ^5.8.3
         version: 5.8.3
@@ -5807,12 +5804,6 @@ packages:
         integrity: sha512-dVvJhZ2bT+kQDHlE4Lep8t+sgEc0XD96fXLzAi2DDI2bsaegBbClxXVNMma0C2WsG+n9GJSYx292dTvA8CYRtw==,
       }
 
-  svelte-gestures@5.2.2:
-    resolution:
-      {
-        integrity: sha512-Y+chXPaSx8OsPoFppUwPk8PJzgrZ7xoDJKXeiEc7JBqyKKzXer9hlf8F9O34eFuAWB4/WQEvccACvyBplESL7A==,
-      }
-
   svelte-select@5.8.3:
     resolution:
       {
@@ -10149,8 +10140,6 @@ snapshots:
     dependencies:
       "@floating-ui/core": 1.7.5
       "@floating-ui/dom": 1.7.6
-
-  svelte-gestures@5.2.2: {}
 
   svelte-select@5.8.3:
     dependencies:
