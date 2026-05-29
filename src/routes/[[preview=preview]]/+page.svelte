@@ -1,64 +1,11 @@
 <script lang="ts">
   import ContentWidth from "$lib/components/ContentWidth/ContentWidth.svelte";
   import { PrismicImage } from "@prismicio/svelte";
-  import { fade } from "svelte/transition";
-  import { X } from "@lucide/svelte";
-
-  let viewpoortWidth = $state(1024);
-
-  let isRequestModalOpen = $state(false);
-
-  $effect(() => {
-    if (document.getElementsByTagName("body"))
-      if (isRequestModalOpen) {
-        (document.getElementsByTagName("body")[0] as HTMLElement).style.overflow = "hidden";
-      } else {
-        (document.getElementsByTagName("body")[0] as HTMLElement).style.overflow = "auto";
-      }
-  });
 
   let { data, ..._rest } = $props();
   let content = $derived(data.page.data);
 </script>
 
-<svelte:window bind:innerWidth={viewpoortWidth} />
-
-{#if isRequestModalOpen}
-  <div
-    class="w-screen h-screen fixed top-0 left-0 bg-black bg-opacity-80 backdrop-blur z-30 flex items-center justify-center"
-    transition:fade
-  >
-    <button
-      onclick={() => (isRequestModalOpen = false)}
-      class="w-screen h-screen absolute top-0 left-0"
-      aria-label="close"
-    >
-    </button>
-
-    <ContentWidth
-      class="blur-none bg-primary h-4/5 md:h-3/5 relative rounded-lg flex flex-col items-center justify-center text-center gap-16 px-3 sm:px-9 md:px-16"
-    >
-      <button
-        class="absolute top-6 right-6 pointer-events-auto"
-        onclick={() => (isRequestModalOpen = false)}
-        aria-label="close"
-      >
-        <X size={24} />
-      </button>
-      <h2 class="text-white">
-        <span>Choosing our&nbsp;</span><span> AED services&nbsp;</span><span>
-          ensures your readiness&nbsp;</span
-        ><span> for emergencies.</span>
-      </h2>
-      <h3 class="text-white">
-        Contact Ryan Kohnen at <a href="mailto:ryan@ryankohnen.com" class="text-black"
-          >ryan@ryankohnen.com</a
-        > <br /> or leave a message
-        <a href="tel:210.273.7767" class="text-black">210.273.7767</a>
-      </h3>
-    </ContentWidth>
-  </div>
-{/if}
 <div class="lg:h-12 xl:h-0"></div>
 <section id="s1" class="h-screen w-screen overflow-hidden">
   <ContentWidth class="flex flex-col h-full items-start justify-end relative">
@@ -88,7 +35,11 @@
   </ContentWidth>
 </section>
 
-<!-- 
+<!--
+Disabled marketing sections — re-enable by replacing the
+`isRequestModalOpen = true` triggers with `requestModal.open()`
+from `$lib/stores/requestModal.svelte`.
+
 <section
   id="s4"
   class="w-screen bg-primary text-white mt-16 py-16 md:mt-24 md:py-24 relative overflow-hidden"
