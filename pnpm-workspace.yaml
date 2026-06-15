@@ -1,0 +1,10 @@
+# pnpm 11 reads settings from here (the package.json "pnpm" field is no longer read).
+allowBuilds:
+  # build tools
+  esbuild: true
+  sharp: true
+  "@tailwindcss/oxide": true
+  protobufjs: true
+  # telemetry — do not run
+  "@scarf/scarf": false
+minimumReleaseAge: 0
