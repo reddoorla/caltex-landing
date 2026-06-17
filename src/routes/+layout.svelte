@@ -122,6 +122,6 @@
     </footer>
   {/if}
 </main>
-{#if !$page.url.pathname.startsWith("/dev/")}
+{#if data.isPreviewSession && !$page.url.pathname.startsWith("/dev/")}
   <PrismicPreview {repositoryName} />
 {/if}

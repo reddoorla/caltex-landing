@@ -3,6 +3,8 @@ export const prerender = "auto";
 import { createClient } from "$lib/prismicio";
 
 export async function load({ fetch, cookies }) {
+  const isPreviewSession = !!cookies.get("io.prismic.preview");
+
   const client = createClient({ fetch, cookies });
 
   const page = await client.getSingle("home");
@@ -13,5 +15,6 @@ export async function load({ fetch, cookies }) {
     meta_description: page.data.meta_description,
     meta_title: page.data.meta_title,
     meta_image: page.data.meta_image.url,
+    isPreviewSession,
   };
 }
