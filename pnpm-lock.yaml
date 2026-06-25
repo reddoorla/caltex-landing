@@ -72,6 +72,9 @@ importers:
       prettier-plugin-svelte:
         specifier: ^4.0.1
         version: 4.0.1(prettier@3.8.3)(svelte@5.55.10(@typescript-eslint/types@8.60.0))
+      sharp:
+        specifier: ^0.33.5
+        version: 0.33.5
       slice-machine-ui:
         specifier: ^2.21.3
         version: 2.21.3(@prismicio/types@0.2.9)(zod@3.25.76)
@@ -4776,7 +4779,7 @@ snapshots:
 
   '@img/sharp-wasm32@0.34.5':
     dependencies:
-      '@emnapi/runtime': 1.10.0
+      '@emnapi/runtime': 1.11.1
     optional: true
 
   '@img/sharp-win32-arm64@0.34.5':
