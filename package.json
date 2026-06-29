@@ -51,7 +51,7 @@
     "@zerodevx/svelte-img": "^2.1.2",
     "svelte-select": "^5.8.3"
   },
-  "packageManager": "pnpm@11.7.0",
+  "packageManager": "pnpm@11.8.0",
   "overrides": {
     "@sveltejs/kit>cookie": "^0.7.0"
   }
