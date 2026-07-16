@@ -24,9 +24,12 @@ export async function GET({ fetch }) {
   const client = createClient({ fetch });
   const docs = await client.dangerouslyGetAll().catch(() => []);
 
+  /** @type {Set<string>} */
   const seen = new Set();
+  /** @type {string[]} */
   const urls = [];
 
+  /** @param {string} path @param {string} [lastmod] */
   const push = (path, lastmod) => {
     if (seen.has(path)) return;
     seen.add(path);
