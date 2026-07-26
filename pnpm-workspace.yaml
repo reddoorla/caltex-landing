@@ -8,3 +8,7 @@ allowBuilds:
   # telemetry — do not run
   "@scarf/scarf": false
 minimumReleaseAge: 0
+# security floors — capped, remove once the parent ranges catch up
+overrides:
+  "@sveltejs/kit>cookie": "^0.7.0" # GHSA-pxg6-pf52-xh8x (kit still asks for ^0.6.0)
+  "imagetools-core>sharp": "^0.35.0" # GHSA-f88m-g3jw-g9cj (imagetools-core 6.x asks for ^0.33.1)
