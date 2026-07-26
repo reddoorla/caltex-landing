@@ -26,13 +26,16 @@
   let showNav = $state(false);
 
   let content = $derived(data.page.data);
+
+  // Fallback only — a non-empty per-page Prismic meta_description always wins.
+  // Copy taken verbatim from the live homepage subtitle.
+  const DEFAULT_DESCRIPTION =
+    "Caltex Medical: AEDs and program management currently serving the Texas Hill Country and San Antonio area.";
 </script>
 
 <svelte:head>
   <title>{$page.data.title}</title>
-  {#if $page.data.meta_description}
-    <meta name="description" content={$page.data.meta_description} />
-  {/if}
+  <meta name="description" content={$page.data.meta_description || DEFAULT_DESCRIPTION} />
   {#if $page.data.meta_title}
     <meta property="og:title" content={$page.data.meta_title} />
   {/if}
