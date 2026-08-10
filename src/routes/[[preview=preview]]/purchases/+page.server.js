@@ -7,7 +7,7 @@ export async function load({ fetch, cookies }) {
 
   return {
     page,
-    title: "Caltex Medical",
+    title: "AED Purchases | Caltex Medical",
     meta_description: page.data.meta_description,
     meta_title: page.data.meta_title,
     meta_image: page.data.meta_image.url,
