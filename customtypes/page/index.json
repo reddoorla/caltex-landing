@@ -22,15 +22,6 @@
           "single": "heading1"
         }
       },
-      "delivery_probe": {
-        "type": "Boolean",
-        "config": {
-          "label": "Delivery probe (temporary)",
-          "placeholder_false": "off",
-          "placeholder_true": "on",
-          "default_value": false
-        }
-      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
