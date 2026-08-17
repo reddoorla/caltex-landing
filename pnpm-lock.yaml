@@ -25,8 +25,8 @@ importers:
         specifier: ^2.1.2
         version: 2.1.2(@types/node@25.9.5)(svelte@5.56.8(@typescript-eslint/types@8.67.0))
       svelte-select:
-        specifier: ^5.8.3
-        version: 5.8.3
+        specifier: ^6.0.0
+        version: 6.0.0(svelte@5.56.8(@typescript-eslint/types@8.67.0))
     devDependencies:
       '@axe-core/playwright':
         specifier: ^4.11.3
@@ -2695,8 +2695,10 @@ packages:
   svelte-floating-ui@1.5.8:
     resolution: {integrity: sha512-dVvJhZ2bT+kQDHlE4Lep8t+sgEc0XD96fXLzAi2DDI2bsaegBbClxXVNMma0C2WsG+n9GJSYx292dTvA8CYRtw==}
 
-  svelte-select@5.8.3:
-    resolution: {integrity: sha512-nQsvflWmTCOZjssdrNptzfD1Ok45hHVMTL5IHay5DINk7dfu5Er+8KsVJnZMJdSircqtR0YlT4YkCFlxOUhVPA==}
+  svelte-select@6.0.0:
+    resolution: {integrity: sha512-WJ1UDw0a1Z3I7oVFgaCS7G9D2rCSmYAPpufNEj/DNuk5Oyb2a5dju6F36o0urBVw9bTE3WkM9cZkI0x+Sfo8Bg==}
+    peerDependencies:
+      svelte: '>=5'
 
   svelte2tsx@0.7.60:
     resolution: {integrity: sha512-aefUopCWAA3AT+6K6PQj5JP19+C2dj31qSh06p+nLjVsizwYqGHtTarvhYsCFWl5tSzrD19GL0s+2FcB3K26Lg==}
@@ -5426,8 +5428,9 @@ snapshots:
       '@floating-ui/core': 1.8.0
       '@floating-ui/dom': 1.8.0
 
-  svelte-select@5.8.3:
+  svelte-select@6.0.0(svelte@5.56.8(@typescript-eslint/types@8.67.0)):
     dependencies:
+      svelte: 5.56.8(@typescript-eslint/types@8.67.0)
       svelte-floating-ui: 1.5.8
 
   svelte2tsx@0.7.60(svelte@5.56.8(@typescript-eslint/types@8.67.0))(typescript@6.0.3):
