@@ -1,0 +1,5 @@
+{
+  "repositoryName": "caltex-landing",
+  "libraries": ["./src/lib/slices"],
+  "routes": []
+}
