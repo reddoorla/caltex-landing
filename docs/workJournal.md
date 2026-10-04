@@ -95,7 +95,7 @@ with an un-regenerated field added to the RichText model.
 The nightly drift sweep read caltex's 6 models as matching Prismic at
 `1816abf`, the base of this change, so nothing was owed to Prismic first.
 
-## 2026-10-04 — The simulator leaves every page's bundle; an encoded path gets the simulator's framing (this PR)
+## 2026-10-04 — The simulator leaves every page's bundle; an encoded path gets the simulator's framing (#70)
 
 These are the two findings from the adversarial review of #69, ported from reddoor-starter#168, where the reasoning and the fixes that failed are recorded. #69 imported `SliceSimulator` from the `@prismicio/svelte` barrel. The barrel statically re-exports it, so Rolldown put `@prismicio/simulator` into the barrel's shared chunk. Here that chunk hung off the root layout, so every page preloaded it. `scripts/prismic-barrel.ts` declares that one re-export-only module side-effect-free, and Rolldown then binds `SliceZone` directly.
 
