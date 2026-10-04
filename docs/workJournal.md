@@ -53,3 +53,44 @@ exists and why contact details are imported from it rather than typed again.
 **State as of this entry.** `main` at `a1b7315`, tree clean, nothing in flight
 and no work in progress on any local branch. Last substantive change was
 2026-09-01.
+
+## 2026-10-04 — Off Slice Machine, onto the Prismic CLI (reddoor-maintenance#1090, `claude/prismic-cli`)
+
+Phase 4 of the fleet migration (reddoor-maintenance
+`docs/prismic-migration-plan-2026-10.md` §9), following espada's port
+(espada#79) of reddoor-starter#166. Slice Machine is deprecated by Prismic
+since 2026-09-18; models are now edited in the Type Builder and the generated
+files come from `pnpm prismic:gen`.
+
+**The simulator could not be framed, and the reason was prerendering, not a
+policy.** This site never opted into the central CSP and has no hook, so on
+paper nothing restricted framing. But the root layout's `prerender = "auto"`
+let the build crawl `/slice-simulator` into a static file, and netlify.toml's
+`/*` block sends `X-Frame-Options: SAMEORIGIN` on static files. Measured on
+www.caltexmedical.com before the change: `/slice-simulator`, `/`, `/leasing`
+and `/contact` all carried `SAMEORIGIN` from the edge cache, while `/health`
+(a function, `prerender = false`) carried none. That control is the evidence
+that Netlify's static headers do not reach a server-rendered response. So
+`/slice-simulator` is now `prerender = false`, and `src/hooks.server.ts`, which
+touches only that route, drops X-Frame-Options and sends
+`frame-ancestors 'self' http://localhost:* https://*.prismic.io https://prismic.io`.
+From `vite preview`, that header is the only change: `/`, `/leasing`, `/health`
+and a 404 uid send neither header, before and after. The prerendered set went
+from six pages to five. Putting `prerender` back to `"auto"` returns
+`slice-simulator.html` to the build output.
+
+**Types moved to the project root, and svelte-check stopped seeing them.**
+Nothing here imported the old `src/prismicio-types.d.ts` by path, so moving it
+outside SvelteKit's `src/**` include took `Content.*` from all four slices and
+the typed uid from `[uid]`'s `entries()`: 0 errors before, 5 after. The
+`src/app.d.ts` import brings it back to 0; deleting that line returns the same 5.
+
+**No stale model.** The regenerated types export the same 31 names as the
+Slice Machine file, and the slice index maps the same four components. The
+code differs only in generator output: heading-only rich text is typed
+`RichTextField`, not `TitleField`, and every `LinkField` spells out its
+generics. The `prismic-codegen` job passed on the committed tree and went red
+with an un-regenerated field added to the RichText model.
+
+The nightly drift sweep read caltex's 6 models as matching Prismic at
+`1816abf`, the base of this change, so nothing was owed to Prismic first.

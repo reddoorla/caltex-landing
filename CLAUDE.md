@@ -12,7 +12,7 @@ There is no `pnpm verify` here. The checks are `pnpm lint`, `pnpm check`,
 `pnpm build` and `pnpm test:smoke`; CI runs the shared reusable workflow from
 `reddoorla/.github`.
 
-Three things that are not obvious:
+Four things that are not obvious:
 
 - **`README.md` describes the wireframer starter this was forked from, not this
   site.** It has never been rewritten. Treat it as history.
@@ -23,6 +23,20 @@ Three things that are not obvious:
 - **Public contact details live in `src/lib/constants/contact.ts`**, one export,
   imported everywhere. The client's name was once hand-copied wrong into five
   files; that constant is the fix, so do not inline it again.
+- **`src/lib/slices/index.ts` and `prismicio-types.d.ts` are generated** by
+  the Prismic CLI (`pnpm prismic:gen`; Slice Machine is gone, deprecated by
+  Prismic 2026-09-18). Edit a model's JSON, regenerate, commit both; the
+  `prismic-codegen` job fails a PR whose generated files are stale. Both are in
+  `.prettierignore`. The types file sits at the project root, outside
+  SvelteKit's `src/**` include, so `src/app.d.ts` imports it. Run by an agent,
+  the CLI refuses without `--task-id` and `--user-intent`, so an agent runs
+  `pnpm exec prismic task-id` once, then
+  `pnpm exec prismic gen types --task-id <id> --user-intent "<the ask>"` and the
+  same for `gen slice-index`. Never `prismic push` or `prismic pull`: both
+  delete to match. `/slice-simulator` is server-rendered (`prerender = false`)
+  so `src/hooks.server.ts` can drop netlify.toml's `X-Frame-Options` there and
+  let Prismic's Type Builder frame it; prerendered, it would be a static file
+  carrying `SAMEORIGIN`.
 
 ## The work journal
 
