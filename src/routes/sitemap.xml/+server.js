@@ -9,8 +9,8 @@ import { SITE_URL } from "$lib/site";
 export const prerender = true;
 
 // Fixed page routes under src/routes/[[preview=preview]]/. The `home` singleton
-// renders at "/"; aed-programs/our-story/community/contact are static page routes.
-const STATIC_PATHS = ["/", "/aed-programs", "/our-story", "/community", "/contact"];
+// renders at "/"; every other page is a `page` document served by [uid].
+const STATIC_PATHS = ["/"];
 
 // Repeatable Prismic document type -> public path. The `home` type is a
 // singleton served at "/" (covered by STATIC_PATHS); only `page` docs are
