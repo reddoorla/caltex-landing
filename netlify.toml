@@ -29,3 +29,23 @@
     for = "/_app/immutable/*"
     [headers.values]
         Cache-Control = "public, max-age=31536000, immutable"
+
+[[redirects]]
+    from = "/leasing"
+    to = "/aed-programs"
+    status = 301
+
+[[redirects]]
+    from = "/purchases"
+    to = "/our-story"
+    status = 301
+
+[[redirects]]
+    from = "/preview/leasing"
+    to = "/preview/aed-programs"
+    status = 301
+
+[[redirects]]
+    from = "/preview/purchases"
+    to = "/preview/our-story"
+    status = 301

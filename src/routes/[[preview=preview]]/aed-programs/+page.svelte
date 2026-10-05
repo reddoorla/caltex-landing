@@ -9,7 +9,7 @@
 </script>
 
 <ContentWidth class="flex flex-col items-start justify-start pt-48 pb-24">
-  <h1>AED LEASING</h1>
+  <h1>AED Programs</h1>
 </ContentWidth>
 
 <section id="s5">

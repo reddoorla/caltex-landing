@@ -4,7 +4,7 @@ The marketing site for **Caltex Medical** — AEDs, leasing and program
 management for San Antonio and the Texas Hill Country. SvelteKit 2 / Svelte 5 /
 Tailwind v4 / Prismic (`caltex-landing`), deployed on Netlify at
 `https://www.caltexmedical.com`. Source is in `src/`: five hand-built routes
-under `src/routes/[[preview=preview]]/` (home, community, leasing, purchases,
+under `src/routes/[[preview=preview]]/` (home, community, aed-programs, our-story,
 contact) plus a Prismic `[uid]` catch-all, and four slices in
 `src/lib/slices/`.
 
