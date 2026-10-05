@@ -86,12 +86,12 @@
         <a
           class="text-primary hover:brightness-75 transition duration-300"
           onclick={() => (showNav = false)}
-          href="/leasing"><h1 class="bump">AED Leasing</h1></a
+          href="/aed-programs"><h1 class="bump">AED Programs</h1></a
         >
         <a
           class="text-primary hover:brightness-75 transition duration-300"
           onclick={() => (showNav = false)}
-          href="/purchases"><h1 class="bump">AED Purchases</h1></a
+          href="/our-story"><h1 class="bump">Our Story</h1></a
         >
         <a
           class="text-primary hover:brightness-75 transition duration-300"
