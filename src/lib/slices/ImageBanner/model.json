@@ -1,0 +1,35 @@
+{
+  "id": "image_banner",
+  "type": "SharedSlice",
+  "name": "ImageBanner",
+  "description": "A full-width darkened photo with title artwork over it.",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Background photo with title artwork.",
+      "imageUrl": "",
+      "primary": {
+        "background_image": {
+          "type": "Image",
+          "config": {
+            "label": "Background image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "title_image": {
+          "type": "Image",
+          "config": {
+            "label": "Title image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

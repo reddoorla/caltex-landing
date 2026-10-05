@@ -1,0 +1,50 @@
+{
+  "id": "icon_grid",
+  "type": "SharedSlice",
+  "name": "IconGrid",
+  "description": "White cards in two columns, each an icon with a short label.",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Icon cards with an optional closing line.",
+      "imageUrl": "",
+      "primary": {
+        "cards": {
+          "type": "Group",
+          "config": {
+            "label": "Cards",
+            "repeat": true,
+            "fields": {
+              "icon": {
+                "type": "Image",
+                "config": {
+                  "label": "Icon",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "label": {
+                "type": "Text",
+                "config": {
+                  "label": "Label",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        },
+        "closing_text": {
+          "type": "Text",
+          "config": {
+            "label": "Closing text",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
