@@ -1,0 +1,42 @@
+{
+  "id": "home_hero",
+  "type": "SharedSlice",
+  "name": "HomeHero",
+  "description": "The home page's opening screen: title artwork, the AED illustration and the orange subtitle bar.",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Title artwork, AED illustration and subtitle bar.",
+      "imageUrl": "",
+      "primary": {
+        "title_image": {
+          "type": "Image",
+          "config": {
+            "label": "Title image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "aed_image": {
+          "type": "Image",
+          "config": {
+            "label": "AED image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "subtitle": {
+          "type": "Text",
+          "config": {
+            "label": "Subtitle",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

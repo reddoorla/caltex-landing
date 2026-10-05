@@ -156,7 +156,32 @@ export interface HomeDocumentDataS6StepsItem {
 	body: prismic.KeyTextField;
 }
 
-type HomeDocumentDataSlicesSlice = never
+/**
+ * Item in *Home → Navigation*
+ */
+export interface HomeDocumentDataNavigationItem {
+	/**
+	 * Label field in *Home → Navigation*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: home.navigation[].label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	label: prismic.KeyTextField;
+	
+	/**
+	 * Link field in *Home → Navigation*
+	 *
+	 * - **Field Type**: Content Relationship
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: home.navigation[].link
+	 * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+	 */
+	link: prismic.ContentRelationshipField<"page">;
+}
+
+type HomeDocumentDataSlicesSlice = HomeHeroSlice
 
 /**
  * Content for Home documents
@@ -493,6 +518,17 @@ interface HomeDocumentData {
 	s8_light_text: prismic.RichTextField;
 	
 	/**
+	 * Navigation field in *Home*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: home.navigation[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	navigation: prismic.GroupField<Simplify<HomeDocumentDataNavigationItem>>;
+	
+	/**
 	 * Slice Zone field in *Home*
 	 *
 	 * - **Field Type**: Slice Zone
@@ -546,7 +582,7 @@ interface HomeDocumentData {
  */
 export type HomeDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
 
-type PageDocumentDataSlicesSlice = RichTextSlice
+type PageDocumentDataSlicesSlice = RichTextSlice | ImageBannerSlice | IconGridSlice | ImageAndTextSlice | CommunityFeatureSlice
 
 /**
  * Content for Page documents
@@ -618,6 +654,74 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
 export type AllDocumentTypes = HomeDocument | PageDocument;
+
+/**
+ * Primary content in *CommunityFeature → Default → Primary*
+ */
+export interface CommunityFeatureSliceDefaultPrimary {
+	/**
+	 * Title image field in *CommunityFeature → Default → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: community_feature.default.primary.title_image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	title_image: prismic.ImageField<never>;
+	
+	/**
+	 * Side image field in *CommunityFeature → Default → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: community_feature.default.primary.side_image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	side_image: prismic.ImageField<never>;
+	
+	/**
+	 * Subheader field in *CommunityFeature → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: community_feature.default.primary.subheader
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	subheader: prismic.RichTextField;
+	
+	/**
+	 * Body field in *CommunityFeature → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: community_feature.default.primary.body
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	body: prismic.RichTextField;
+}
+
+/**
+ * Default variation for CommunityFeature Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Title artwork, image, subheading and body.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type CommunityFeatureSliceDefault = prismic.SharedSliceVariation<"default", Simplify<CommunityFeatureSliceDefaultPrimary>, never>;
+
+/**
+ * Slice variation for *CommunityFeature*
+ */
+type CommunityFeatureSliceVariation = CommunityFeatureSliceDefault
+
+/**
+ * CommunityFeature Shared Slice
+ *
+ * - **API ID**: `community_feature`
+ * - **Description**: An orange band with title artwork and an image on the left, text on the right.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type CommunityFeatureSlice = prismic.SharedSlice<"community_feature", CommunityFeatureSliceVariation>;
 
 /**
  * Primary content in *ContentWidth → Single Col Text → Primary*
@@ -1442,6 +1546,277 @@ type HeroSliceVariation = HeroSliceDefault | HeroSliceSlider
  * - **Documentation**: https://prismic.io/docs/slices
  */
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
+
+/**
+ * Primary content in *HomeHero → Default → Primary*
+ */
+export interface HomeHeroSliceDefaultPrimary {
+	/**
+	 * Title image field in *HomeHero → Default → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: home_hero.default.primary.title_image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	title_image: prismic.ImageField<never>;
+	
+	/**
+	 * AED image field in *HomeHero → Default → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: home_hero.default.primary.aed_image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	aed_image: prismic.ImageField<never>;
+	
+	/**
+	 * Subtitle field in *HomeHero → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: home_hero.default.primary.subtitle
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	subtitle: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for HomeHero Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Title artwork, AED illustration and subtitle bar.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HomeHeroSliceDefault = prismic.SharedSliceVariation<"default", Simplify<HomeHeroSliceDefaultPrimary>, never>;
+
+/**
+ * Slice variation for *HomeHero*
+ */
+type HomeHeroSliceVariation = HomeHeroSliceDefault
+
+/**
+ * HomeHero Shared Slice
+ *
+ * - **API ID**: `home_hero`
+ * - **Description**: The home page's opening screen: title artwork, the AED illustration and the orange subtitle bar.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HomeHeroSlice = prismic.SharedSlice<"home_hero", HomeHeroSliceVariation>;
+
+/**
+ * Item in *IconGrid → Default → Primary → Cards*
+ */
+export interface IconGridSliceDefaultPrimaryCardsItem {
+	/**
+	 * Icon field in *IconGrid → Default → Primary → Cards*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: icon_grid.default.primary.cards[].icon
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	icon: prismic.ImageField<never>;
+	
+	/**
+	 * Label field in *IconGrid → Default → Primary → Cards*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: icon_grid.default.primary.cards[].label
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	label: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *IconGrid → Default → Primary*
+ */
+export interface IconGridSliceDefaultPrimary {
+	/**
+	 * Cards field in *IconGrid → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: icon_grid.default.primary.cards[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	cards: prismic.GroupField<Simplify<IconGridSliceDefaultPrimaryCardsItem>>;
+	
+	/**
+	 * Closing text field in *IconGrid → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: icon_grid.default.primary.closing_text
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	closing_text: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for IconGrid Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Icon cards with an optional closing line.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type IconGridSliceDefault = prismic.SharedSliceVariation<"default", Simplify<IconGridSliceDefaultPrimary>, never>;
+
+/**
+ * Slice variation for *IconGrid*
+ */
+type IconGridSliceVariation = IconGridSliceDefault
+
+/**
+ * IconGrid Shared Slice
+ *
+ * - **API ID**: `icon_grid`
+ * - **Description**: White cards in two columns, each an icon with a short label.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type IconGridSlice = prismic.SharedSlice<"icon_grid", IconGridSliceVariation>;
+
+/**
+ * Primary content in *ImageAndText → Story → Primary*
+ */
+export interface ImageAndTextSliceDefaultPrimary {
+	/**
+	 * Image field in *ImageAndText → Story → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: image_and_text.default.primary.image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	image: prismic.ImageField<never>;
+	
+	/**
+	 * Body field in *ImageAndText → Story → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: image_and_text.default.primary.body
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	body: prismic.RichTextField;
+}
+
+/**
+ * Story variation for ImageAndText Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Large body copy with a Request Info button.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ImageAndTextSliceDefault = prismic.SharedSliceVariation<"default", Simplify<ImageAndTextSliceDefaultPrimary>, never>;
+
+/**
+ * Primary content in *ImageAndText → Contact Details → Primary*
+ */
+export interface ImageAndTextSliceContactDetailsPrimary {
+	/**
+	 * Image field in *ImageAndText → Contact Details → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: image_and_text.contactDetails.primary.image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	image: prismic.ImageField<never>;
+	
+	/**
+	 * Heading field in *ImageAndText → Contact Details → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: image_and_text.contactDetails.primary.heading
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	heading: prismic.KeyTextField;
+	
+	/**
+	 * Body field in *ImageAndText → Contact Details → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: image_and_text.contactDetails.primary.body
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	body: prismic.RichTextField;
+}
+
+/**
+ * Contact Details variation for ImageAndText Slice
+ *
+ * - **API ID**: `contactDetails`
+ * - **Description**: A heading, body copy and the site's email and phone.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ImageAndTextSliceContactDetails = prismic.SharedSliceVariation<"contactDetails", Simplify<ImageAndTextSliceContactDetailsPrimary>, never>;
+
+/**
+ * Slice variation for *ImageAndText*
+ */
+type ImageAndTextSliceVariation = ImageAndTextSliceDefault | ImageAndTextSliceContactDetails
+
+/**
+ * ImageAndText Shared Slice
+ *
+ * - **API ID**: `image_and_text`
+ * - **Description**: A photo bleeding off the left edge with text in the right column.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ImageAndTextSlice = prismic.SharedSlice<"image_and_text", ImageAndTextSliceVariation>;
+
+/**
+ * Primary content in *ImageBanner → Default → Primary*
+ */
+export interface ImageBannerSliceDefaultPrimary {
+	/**
+	 * Background image field in *ImageBanner → Default → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: image_banner.default.primary.background_image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	background_image: prismic.ImageField<never>;
+	
+	/**
+	 * Title image field in *ImageBanner → Default → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: image_banner.default.primary.title_image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	title_image: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for ImageBanner Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Background photo with title artwork.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ImageBannerSliceDefault = prismic.SharedSliceVariation<"default", Simplify<ImageBannerSliceDefaultPrimary>, never>;
+
+/**
+ * Slice variation for *ImageBanner*
+ */
+type ImageBannerSliceVariation = ImageBannerSliceDefault
+
+/**
+ * ImageBanner Shared Slice
+ *
+ * - **API ID**: `image_banner`
+ * - **Description**: A full-width darkened photo with title artwork over it.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ImageBannerSlice = prismic.SharedSlice<"image_banner", ImageBannerSliceVariation>;
 
 /**
  * Primary content in *RichText → Default → Primary*
@@ -2488,11 +2863,16 @@ declare module "@prismicio/client" {
 			HomeDocumentDataS3BulletsItem,
 			HomeDocumentDataS4ImageBlocksItem,
 			HomeDocumentDataS6StepsItem,
+			HomeDocumentDataNavigationItem,
 			HomeDocumentDataSlicesSlice,
 			PageDocument,
 			PageDocumentData,
 			PageDocumentDataSlicesSlice,
 			AllDocumentTypes,
+			CommunityFeatureSlice,
+			CommunityFeatureSliceDefaultPrimary,
+			CommunityFeatureSliceVariation,
+			CommunityFeatureSliceDefault,
 			ContentWidthMediaSlice,
 			ContentWidthMediaSliceDefaultPrimary,
 			ContentWidthMediaSliceSliderLeftImageRightPrimary,
@@ -2509,6 +2889,25 @@ declare module "@prismicio/client" {
 			HeroSliceVariation,
 			HeroSliceDefault,
 			HeroSliceSlider,
+			HomeHeroSlice,
+			HomeHeroSliceDefaultPrimary,
+			HomeHeroSliceVariation,
+			HomeHeroSliceDefault,
+			IconGridSlice,
+			IconGridSliceDefaultPrimaryCardsItem,
+			IconGridSliceDefaultPrimary,
+			IconGridSliceVariation,
+			IconGridSliceDefault,
+			ImageAndTextSlice,
+			ImageAndTextSliceDefaultPrimary,
+			ImageAndTextSliceContactDetailsPrimary,
+			ImageAndTextSliceVariation,
+			ImageAndTextSliceDefault,
+			ImageAndTextSliceContactDetails,
+			ImageBannerSlice,
+			ImageBannerSliceDefaultPrimary,
+			ImageBannerSliceVariation,
+			ImageBannerSliceDefault,
 			RichTextSlice,
 			RichTextSliceDefaultPrimary,
 			RichTextSliceVariation,

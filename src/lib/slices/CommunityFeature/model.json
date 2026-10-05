@@ -1,0 +1,53 @@
+{
+  "id": "community_feature",
+  "type": "SharedSlice",
+  "name": "CommunityFeature",
+  "description": "An orange band with title artwork and an image on the left, text on the right.",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Title artwork, image, subheading and body.",
+      "imageUrl": "",
+      "primary": {
+        "title_image": {
+          "type": "Image",
+          "config": {
+            "label": "Title image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "side_image": {
+          "type": "Image",
+          "config": {
+            "label": "Side image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "subheader": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Subheader",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading3"
+          }
+        },
+        "body": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Body",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

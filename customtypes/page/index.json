@@ -29,6 +29,18 @@
           "choices": {
             "rich_text": {
               "type": "SharedSlice"
+            },
+            "image_banner": {
+              "type": "SharedSlice"
+            },
+            "icon_grid": {
+              "type": "SharedSlice"
+            },
+            "image_and_text": {
+              "type": "SharedSlice"
+            },
+            "community_feature": {
+              "type": "SharedSlice"
             }
           }
         }

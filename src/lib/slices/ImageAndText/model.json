@@ -1,0 +1,71 @@
+{
+  "id": "image_and_text",
+  "type": "SharedSlice",
+  "name": "ImageAndText",
+  "description": "A photo bleeding off the left edge with text in the right column.",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Story",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Large body copy with a Request Info button.",
+      "imageUrl": "",
+      "primary": {
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "body": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Body",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink"
+          }
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "contactDetails",
+      "name": "Contact Details",
+      "docURL": "...",
+      "version": "initial",
+      "description": "A heading, body copy and the site's email and phone.",
+      "imageUrl": "",
+      "primary": {
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "Heading",
+            "placeholder": ""
+          }
+        },
+        "body": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Body",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
