@@ -39,3 +39,13 @@
     from = "/purchases"
     to = "/our-story"
     status = 301
+
+[[redirects]]
+    from = "/preview/leasing"
+    to = "/preview/aed-programs"
+    status = 301
+
+[[redirects]]
+    from = "/preview/purchases"
+    to = "/preview/our-story"
+    status = 301
