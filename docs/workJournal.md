@@ -129,3 +129,14 @@ The copy and photo were not staged in Prismic: the Prismic MCP connector is
 not activated for this repository. The manual steps are reddoor-maintenance
 Operator decision 79. Publish them before merging this, or `/our-story`
 shows the old purchasing line under its new heading.
+
+## 2026-10-05 — Our Story drops the purchase bullets
+
+The operator asked for the five "Every second counts…" bullets to come off
+Our Story; they were product copy left over from the AED Purchases page, and
+Erik had cited them only as a size reference. The Request Info button stays.
+At 1440 the text column now ends at 1101px against the photo's 1003px, so
+the page is about 360px shorter. The bullets are still in the `home`
+document's `s3_bullets` and still ride the page's hydration payload, since
+the route loads the whole singleton. Nothing renders them; clearing the
+field in Prismic is optional.
