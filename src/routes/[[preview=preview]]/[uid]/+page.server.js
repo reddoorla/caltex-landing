@@ -1,4 +1,4 @@
-import { asText } from "@prismicio/client";
+import { asText, NotFoundError } from "@prismicio/client";
 import { error } from "@sveltejs/kit";
 
 import { createClient } from "$lib/prismicio";
@@ -9,8 +9,9 @@ export async function load({ params, fetch, cookies, parent }) {
   let page;
   try {
     page = await client.getByUID("page", params.uid);
-  } catch {
-    error(404, { message: "Page not found" });
+  } catch (e) {
+    if (e instanceof NotFoundError) error(404, { message: "Page not found" });
+    throw e;
   }
 
   const home = (await parent()).page.data;
