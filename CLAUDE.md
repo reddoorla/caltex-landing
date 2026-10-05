@@ -3,10 +3,18 @@
 The marketing site for **Caltex Medical** — AEDs, leasing and program
 management for San Antonio and the Texas Hill Country. SvelteKit 2 / Svelte 5 /
 Tailwind v4 / Prismic (`caltex-landing`), deployed on Netlify at
-`https://www.caltexmedical.com`. Source is in `src/`: five hand-built routes
-under `src/routes/[[preview=preview]]/` (home, community, aed-programs, our-story,
-contact) plus a Prismic `[uid]` catch-all, and four slices in
-`src/lib/slices/`.
+`https://www.caltexmedical.com`. Source is in `src/`. Every page is Prismic
+content rendered through slices: `/` is the `home` singleton's slice zone, and
+every other page is a `page` document served by the `[uid]` route under
+`src/routes/[[preview=preview]]/`, its `title` as the h1 and its slice zone
+below. The slices are in `src/lib/slices/`; the five this site uses are
+`home_hero`, `image_banner`, `icon_grid`, `image_and_text` (variations
+`default` for prose and `contactDetails`) and `community_feature`. The nav is
+`home`'s `navigation` group, and the layout's logos and background come from
+`home` too. `Hero`, `ContentWidth`, `ThreeStepPlan` and `RichText` came with
+the starter; the first three are placeholders. `home`'s old `s1`–`s8` fields
+are unrendered since the move to slices (2026-10-05) and stay in the model,
+because a model field delete is a manual Prismic step.
 
 There is no `pnpm verify` here. The checks are `pnpm lint`, `pnpm check`,
 `pnpm build` and `pnpm test:smoke`; CI runs the shared reusable workflow from

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import type { LayoutProps } from "./$types";
   import { PrismicPreview } from "@prismicio/svelte/kit";
   import { page } from "$app/stores";
   import { repositoryName } from "$lib/prismicio";
@@ -8,6 +9,7 @@
   import ScreenWidthImage from "$lib/components/ScreenWidth/ScreenWidthImage.svelte";
   import RequestInfoModal from "$lib/components/RequestInfoModal.svelte";
   import { PrismicImage } from "@prismicio/svelte";
+  import { asLink } from "@prismicio/client";
   import DefaultButton from "$lib/components/Buttons/DefaultButton.svelte";
   import { fade } from "svelte/transition";
   import { Menu } from "@lucide/svelte";
@@ -15,18 +17,18 @@
   import { CONTACT } from "$lib/constants/contact";
   import { cappedWidths } from "@reddoorla/maintenance/images";
 
-  /**
-   * @typedef {Object} Props
-   * @property {import('svelte').Snippet} [children]
-   */
-
-  /** @type {Props} */
-  let { children, data, ..._rest } = $props();
+  let { children, data }: LayoutProps = $props();
 
   let viewportWidth = $state(1024);
   let showNav = $state(false);
 
   let content = $derived(data.page.data);
+  let navigation = $derived(
+    (content.navigation ?? []).flatMap((item) => {
+      const href = asLink(item.link);
+      return href ? [{ label: item.label, href }] : [];
+    }),
+  );
 
   // Fallback only — a non-empty per-page Prismic meta_description always wins.
   // Copy taken verbatim from the live homepage subtitle.
@@ -83,26 +85,13 @@
   {#if showNav}
     <div class="absolute w-screen h-lvh top-0 left-0 pt-48" transition:fade>
       <ContentWidth class="gap-8 md:gap-20 flex flex-col items-end">
-        <a
-          class="text-primary hover:brightness-75 transition duration-300"
-          onclick={() => (showNav = false)}
-          href="/aed-programs"><h1 class="bump">AED Programs</h1></a
-        >
-        <a
-          class="text-primary hover:brightness-75 transition duration-300"
-          onclick={() => (showNav = false)}
-          href="/our-story"><h1 class="bump">Our Story</h1></a
-        >
-        <a
-          class="text-primary hover:brightness-75 transition duration-300"
-          onclick={() => (showNav = false)}
-          href="/community"><h1 class="bump">Grants & Community</h1></a
-        >
-        <a
-          class="text-primary hover:brightness-75 transition duration-300"
-          onclick={() => (showNav = false)}
-          href="/contact"><h1 class="bump">Contact Us</h1></a
-        >
+        {#each navigation as item, i (i)}
+          <a
+            class="text-primary hover:brightness-75 transition duration-300"
+            onclick={() => (showNav = false)}
+            href={item.href}><h1 class="bump">{item.label}</h1></a
+          >
+        {/each}
       </ContentWidth>
     </div>
   {:else}
