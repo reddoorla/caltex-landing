@@ -104,3 +104,28 @@ Measured from the build manifest as each node's static-import closure, gzipped, 
 The hook asked `isCmsFramedRoute(event.url.pathname)`, which is the raw path, while SvelteKit routes on the decoded one. So `/slice%2Dsimulator` rendered the simulator with no framing header at all. That was inert, since `@prismicio/simulator` checks message origins, but it was still wrong. The hook now asks `event.route.id`. From `vite preview` before the change, `/slice%2Dsimulator` and `/slice%2dsimulator` returned 200 with no X-Frame-Options and no CSP. After, both return the widened `frame-ancestors`, the same as `/slice-simulator`.
 
 The plugin file is TypeScript, identical to the starter's, and is imported from `vite.config.js` without an extension. `svelte-check` runs `checkJs` here and refuses both a `.ts` extension in the import and a JS copy of the plugin (`this.error` has no type there). This site has no unit tests, so the proof is `tests/smoke/slice-simulator.spec.ts`. It reads the build manifest from disk, because CI's smoke suite serves `vite dev`, where no chunks exist, and it reads the framing headers over HTTP. On `main` it failed 3 of 7: the bundle check and both encoded paths. On this branch it passes 7 of 7. With the plugin removed it fails the bundle check. The first version read modulepreload links over HTTP and passed on `main`: its regex expected `rel` before `href`, and this site writes them the other way round. A check that only ever passed would have been reported as proof.
+
+## 2026-10-05 — AED Leasing becomes AED Programs, AED Purchases becomes Our Story (#71)
+
+Erik's ask from #caltex. Both names were hard-coded, not Prismic content: the
+nav, the h1s and the `<title>`s of the two static routes. The routes moved to
+`/aed-programs` and `/our-story`, so the URL says what the page is. All four
+old paths (`/leasing`, `/purchases` and their `/preview/` twins) answer 301
+from `netlify.toml`. That was measured on the deploy preview, because a
+review argued from Netlify's docs that the `/*` function would shadow the
+redirects. It does not. The `/preview/` pair was the review's real catch:
+they are prerendered 200s on live, and the rename had turned them into 404s.
+
+Our Story renders `s3_title` and `s3_closing_text` as two paragraphs. A Key
+Text field cannot hold a paragraph break, and this needed no model change.
+The size is `text-lg! lg:text-2xl!`, 24px on desktop and 18px below 1024,
+between the old h3 (28px) and the bullets (16px). The `!` is required:
+`app.css` sets `p { font-size: 16px }` unlayered, and that beats any layered
+Tailwind utility. The founder photo (2073×1930) sits in the square frame
+with `object-cover object-right`, cropping from the left, where Erik left
+room for it.
+
+The copy and photo were not staged in Prismic: the Prismic MCP connector is
+not activated for this repository. The manual steps are reddoor-maintenance
+Operator decision 79. Publish them before merging this, or `/our-story`
+shows the old purchasing line under its new heading.
