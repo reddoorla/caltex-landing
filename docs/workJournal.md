@@ -188,3 +188,17 @@ reports it). Its spacing finding was wrong (it missed the banner's
 `mt-24`). Left as found: nav links in a preview session drop `/preview/`,
 which predates this change, and a page with two of the same slice would
 repeat its section id.
+
+## 2026-10-06 — The icon labels' "double spaces" were U+2028, and a label can now hold a line break (#76)
+
+Erik asked, in #caltex at 13:43Z, for three changes to the orange labels on AED Programs. He wanted the double spaces gone. He wanted a hard return after the comma in "No long-term commitment, 12-month terms.". And he wanted "12-month" kept on one line.
+
+The double spaces were not spaces. Each was a space followed by U+2028 (LINE SEPARATOR), most likely a line break from the design copy that survived a paste. Chrome draws U+2028 as a second space, so on the page it looks exactly like a double space. A scan of every published document found 15 of them in 12 fields: three in two of the `aed-programs` page's `icon_grid` labels, and twelve in ten of `home`'s old `s2`–`s6` fields, which no page renders since the move to slices. Prismic release `asUDwhIAAMIrgcs0` removes all 15. The tool output shows U+2028 as plain whitespace, so only a byte dump (`od -c`: `342 200 250`) told the two apart.
+
+The hard return is a `\n` stored in the Key Text label. `IconGrid`'s `<h3>` now has `white-space: pre-line`, which renders it as a break. A Key Text field stores and returns the newline (read back from the release), so no model change was needed. Unchecked: whether the editor's single-line Key Text input keeps the newline when someone next saves that label by hand. If it drops it, the label goes back to wrapping on its own, which is what it did before. A rule that breaks after any comma would have broken every label that has one. Under the new class the published content renders line for line as it did before at 1440, 1024 and 390. So this code and the release can go live in either order.
+
+"12‑month" uses U+2011, the non-breaking hyphen `s3_title` already uses. At 1440 "12‑month terms." is one line. At 390 the text column is 140 px, so "terms." wraps. A non-breaking space between the two words held the phrase together, but pushed it 13 px past the card's edge at 390, and 28 px at 768, so it was dropped.
+
+Not fixed here: on the live site, at 320, 360 and 768, every card's longest word already runs past the card's right edge. "replacements" overshoots by 50 px at 320. The 128 px icon and the `p-11`/`gap-11` padding leave too little room for the text column at those widths.
+
+The new spec writes a label into the rendered card and measures it. It goes red with no class, with `whitespace-normal` (the newline test), and with `pre-wrap` or `pre` (the space-collapse test).
