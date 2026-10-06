@@ -27,7 +27,7 @@
               sizes="128px"
               loading="lazy"
             />
-            <h3>{card.label}</h3>
+            <h3 class="whitespace-pre-line">{card.label}</h3>
           </div>
         </div>
       {/each}
