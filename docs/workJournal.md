@@ -140,3 +140,51 @@ the page is about 360px shorter. The bullets are still in the `home`
 document's `s3_bullets` and still ride the page's hydration payload, since
 the route loads the whole singleton. Nothing renders them; clearing the
 field in Prismic is optional.
+
+## 2026-10-05 — Every page renders from Prismic slices (on `staging`; models in #73)
+
+The site was hand-built: four routes read the `home` singleton's flat
+`s1`–`s8` fields, so every copy or nav change was a code PR. The operator
+asked to move it onto slices, on a `staging` branch rather than `main`. Only
+the models went to `main` (#73): `prismic-models` pushes models solely on a
+merge to `main`, which its own comment calls load-bearing, and the connector
+cannot create types. #73 added five slices (`home_hero`, `image_banner`,
+`icon_grid`, `image_and_text` with `default` and `contactDetails`,
+`community_feature`) and a `navigation` group on `home`, with placeholder
+components. Every prerendered page of main and #73 compared equal after
+normalising hashed asset names (11 files, 0 differ); one changed word made
+the comparator report its page.
+
+Before publishing the content I believed a `page` doc with uid
+`aed-programs` would break main's prerender, because `[uid]`'s `entries()`
+would emit a path a static route owns, and SvelteKit fails on an entry
+matched by a different route. A build with a fake colliding entry passed.
+SvelteKit enqueues every static route first and skips a path it has already
+seen (`postbuild/prerender.js`, `enqueue`), so the colliding entry is never
+visited and the mismatch check never runs. A throwing `entries()` failed the
+build, which proved the hook does run. So the publish was inert, and the
+live site measured that way: release `asQvEBIAAHEPgEox` (`home`'s hero slice
+and navigation, plus four page documents) went live at 23:16Z, and all 14
+screenshots, the rendered DOM and the sitemap were identical before and
+after the rebuild it triggered.
+
+Staging renders `/` from `home`'s slices and everything else through
+`[uid]`. Against live main: 14 screenshots (five pages at 1440 and 390,
+plus the open nav) are pixel-identical; text, images and alt text, links and
+ids match on every page; the nav's labels and hrefs match. Two class lists
+differ on purpose: AED Programs' 96px under the h1 moved from the heading's
+`pb-24` into the banner's `mt-24`, which a mutation (dropping it) showed the
+parity check catches as a 96px-shorter page at both widths. The sitemap
+lists the same five URLs, now in Prismic's order and with `lastmod`, which
+the existing sitemap code already gives page documents.
+
+The adversarial review found no blocker. Folded in: the starter's
+`page`/`uid: home` resolver rule is replaced with a `home` → `/` route, so a
+nav link to the home document resolves; nav items whose link resolves to
+nothing are dropped instead of rendering an `<a>` with no href; `[uid]`
+returns 404 only for `NotFoundError` and rethrows the rest; and the layout and
+both pages type their props, which a misspelt field now proves (svelte-check
+reports it). Its spacing finding was wrong (it missed the banner's
+`mt-24`). Left as found: nav links in a preview session drop `/preview/`,
+which predates this change, and a page with two of the same slice would
+repeat its section id.

@@ -1,8 +1,73 @@
-<script>
-  let { slice } = $props();
-  /** @type {import("@prismicio/client").Content.ImageAndTextSlice} */
+<script lang="ts">
+  import type { Content } from "@prismicio/client";
+  import ContentWidth from "$lib/components/ContentWidth/ContentWidth.svelte";
+  import { PrismicImage, PrismicRichText } from "@prismicio/svelte";
+  import DefaultButton from "$lib/components/Buttons/DefaultButton.svelte";
+  import { requestModal } from "$lib/stores/requestModal.svelte";
+  import { CONTACT } from "$lib/constants/contact";
+  import { cappedWidths } from "@reddoorla/maintenance/images";
+  import StoryParagraph from "./StoryParagraph.svelte";
+
+  let { slice }: { slice: Content.ImageAndTextSlice } = $props();
+  let isContact = $derived(slice.variation === "contactDetails");
 </script>
 
-<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
-  Placeholder component for {slice.slice_type} (variation: {slice.variation}) Slices
+<section
+  id={isContact ? "s7" : "s3"}
+  class="w-screen mt-12 relative {isContact ? 'lg:mb-64 lg:pb-24' : '-mb-24'}"
+  data-slice-type={slice.slice_type}
+  data-slice-variation={slice.variation}
+>
+  <PrismicImage
+    class={[
+      "absolute h-[100vw] w-screen top-0 right-[4vw] lg:top-[5vw] lg:left-0 lg:h-[40vw] lg:w-[40vw] rounded-r-lg",
+      !isContact && "object-cover object-right",
+    ]}
+    field={slice.primary.image}
+    widths={cappedWidths(slice.primary.image)}
+    sizes="(min-width: 1024px) 40vw, 100vw"
+    loading="eager"
+    fetchpriority="high"
+  />
+  <ContentWidth class="h-full pt-[108vw] lg:py-[5vw] flex justify-end items-end text-dark relative">
+    <div class="lg:w-1/2 h-full flex flex-col justify-between items-start lg:gap-10">
+      {#if slice.variation === "contactDetails"}
+        <h3>{slice.primary.heading}</h3>
+        <div class="flex flex-col gap-y-5 mt-12 lg:mt-0">
+          <div class="rich-text">
+            <PrismicRichText field={slice.primary.body} />
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-y-5 mt-24 lg:mt-0">
+          {#each [CONTACT.email, CONTACT.phoneDisplay] as detail (detail)}
+            <div class="w-full h-12 flex items-center pr-10">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-7 w-7 mr-4"
+                viewBox="0 0 22 22"
+                fill="none"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M14.6667 0H7.33333V7.33333L0 7.33333V14.6667H7.33333V22H14.6667V14.6667H22V7.33333L14.6667 7.33333V0Z"
+                  fill="#EA7724"
+                />
+              </svg>
+              <p class="font-medium translate-y-0.5">{detail}</p>
+            </div>
+          {/each}
+        </div>
+      {:else}
+        <div class="flex flex-col gap-6">
+          <PrismicRichText field={slice.primary.body} components={{ paragraph: StoryParagraph }} />
+        </div>
+        <div class="mt-12 lg:mt-0">
+          <DefaultButton class="mt-6" onclick={() => requestModal.open()}
+            >Request Info</DefaultButton
+          >
+        </div>
+      {/if}
+    </div>
+  </ContentWidth>
 </section>
