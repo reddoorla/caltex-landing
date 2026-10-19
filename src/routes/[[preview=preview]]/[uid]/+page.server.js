@@ -10,7 +10,7 @@ export async function load({ params, fetch, cookies, parent }) {
   try {
     page = await client.getByUID("page", params.uid);
   } catch (e) {
-    if (e instanceof NotFoundError) error(404, { message: "Page not found" });
+    if (e instanceof NotFoundError) error(404, "Page not found");
     throw e;
   }
 
