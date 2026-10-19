@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { LayoutProps } from "./$types";
-  import { PrismicPreview } from "@prismicio/svelte/kit";
-  import { page } from "$app/stores";
+  import PrismicPreview from "$lib/components/PrismicPreview.svelte";
+  import { page } from "$app/state";
   import { repositoryName } from "$lib/prismicio";
   import "../app.css";
   import "../fonts.css";
@@ -37,13 +37,13 @@
 </script>
 
 <svelte:head>
-  <title>{$page.data.title}</title>
-  <meta name="description" content={$page.data.meta_description || DEFAULT_DESCRIPTION} />
-  {#if $page.data.meta_title}
-    <meta property="og:title" content={$page.data.meta_title} />
+  <title>{page.data.title}</title>
+  <meta name="description" content={page.data.meta_description || DEFAULT_DESCRIPTION} />
+  {#if page.data.meta_title}
+    <meta property="og:title" content={page.data.meta_title} />
   {/if}
-  {#if $page.data.meta_image}
-    <meta property="og:image" content={$page.data.meta_image} />
+  {#if page.data.meta_image}
+    <meta property="og:image" content={page.data.meta_image} />
     <meta name="twitter:card" content="summary_large_image" />
   {/if}
 </svelte:head>
@@ -124,6 +124,6 @@
     </footer>
   {/if}
 </main>
-{#if data.isPreviewSession && !$page.url.pathname.startsWith("/dev/")}
+{#if data.isPreviewSession && !page.url.pathname.startsWith("/dev/")}
   <PrismicPreview {repositoryName} />
 {/if}
