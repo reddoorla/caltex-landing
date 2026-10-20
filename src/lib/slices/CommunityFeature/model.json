@@ -1,6 +1,6 @@
 {
-  "id": "community_feature",
   "type": "SharedSlice",
+  "id": "community_feature",
   "name": "CommunityFeature",
   "description": "An orange band with title artwork and an image on the left, text on the right.",
   "variations": [
