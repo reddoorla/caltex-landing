@@ -1,7 +1,7 @@
 # CLAUDE.md
 
 The marketing site for **Caltex Medical** — AEDs, leasing and program
-management for San Antonio and the Texas Hill Country. SvelteKit 2 / Svelte 5 /
+management for San Antonio and the Texas Hill Country. SvelteKit 3 / Svelte 5 /
 Tailwind v4 / Prismic (`caltex-landing`), deployed on Netlify at
 `https://www.caltexmedical.com`. Source is in `src/`. Every page is Prismic
 content rendered through slices: `/` is the `home` singleton's slice zone, and
@@ -18,7 +18,11 @@ because a model field delete is a manual Prismic step.
 
 There is no `pnpm verify` here. The checks are `pnpm lint`, `pnpm check`,
 `pnpm build` and `pnpm test:smoke`; CI runs the shared reusable workflow from
-`reddoorla/.github`.
+`reddoorla/.github`. `tests/kit-config.spec.ts` (in `test:smoke`, no browser)
+holds the SvelteKit 3 config: no `svelte.config.js`, no `paths.origin`, every
+env var `src/` reads declared in `src/env.ts` (kit 3 exposes only those; an
+undeclared read is silently `undefined`), no `$app/stores`, and the
+`src/params.ts` matcher returning a value rather than a boolean.
 
 Four things that are not obvious:
 
@@ -26,7 +30,8 @@ Four things that are not obvious:
   site.** It has never been rewritten. Treat it as history.
 - **The lint/format/test configs are owned by `@reddoorla/maintenance`** and
   overwritten by `sync-configs` — `eslint.config.js`, `.prettierrc.json`,
-  `lighthouserc.json`, `playwright.config.ts`, `svelte.config.js`. Change them
+  `lighthouserc.json`, `playwright.config.ts`, `sveltekit.config.js` (kit 3's
+  config, passed to `sveltekit(...)` in `vite.config.js`). Change them
   there, not here. See [docs/UPGRADE_NOTES.md](docs/UPGRADE_NOTES.md).
 - **Public contact details live in `src/lib/constants/contact.ts`**, one export,
   imported everywhere. The client's name was once hand-copied wrong into five
