@@ -10,7 +10,7 @@ test("ending a preview leaves /preview and keeps the scroll position", async ({
   // which kit 3 rejects in dev and ignores in production: the page jumps to the
   // top. reddoor-starter#188.
   await context.addCookies([{ name: "io.prismic.preview", value: "{}", url: baseURL! }]);
-  await page.goto("/preview/our-story", { waitUntil: "networkidle" });
+  await page.goto("/preview/our-story", { waitUntil: "load" });
   await page.evaluate(() => window.scrollTo(0, 400));
   const before = await page.evaluate(() => window.scrollY);
   expect(before).toBeGreaterThan(0);
