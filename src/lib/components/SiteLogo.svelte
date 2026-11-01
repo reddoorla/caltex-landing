@@ -11,7 +11,9 @@
   //
   // A plain <img> rather than <PrismicImage>, which accepts only an empty alt
   // and renders nothing for an empty field: the alt is the wordmark's (the
-  // site's name), and an empty mark falls back to the wordmark everywhere.
+  // site's name). An empty mark falls back to the wordmark from 769px only,
+  // so a phone never gets the 241px wordmark back; an empty wordmark leaves the
+  // mark at every width.
   interface Props {
     logo: ImageField;
     mark: ImageField;
@@ -47,14 +49,14 @@
     <img
       src={narrow.src}
       srcset={narrow.srcset}
-      sizes={both ? "80px" : "220px"}
+      sizes={isFilled.image(mark) ? "80px" : "220px"}
       {alt}
       width={base.dimensions.width}
       height={base.dimensions.height}
       {loading}
       {fetchpriority}
       decoding="async"
-      class="w-auto h-10"
+      class="w-auto h-10 {isFilled.image(mark) ? '' : 'max-[769px]:hidden'}"
     />
   </picture>
 {/if}
