@@ -26,4 +26,6 @@ export const smokeRoutes: SmokeRoute[] = [
   { path: "/", name: "home", hydrationMarker: "footer" },
   { path: "/aed-programs", name: "aed programs", hydrationMarker: "footer" },
   { path: "/our-story", name: "our story", hydrationMarker: "footer" },
+  { path: "/community", name: "community", hydrationMarker: "footer" },
+  { path: "/contact", name: "contact", hydrationMarker: "footer" },
 ];
