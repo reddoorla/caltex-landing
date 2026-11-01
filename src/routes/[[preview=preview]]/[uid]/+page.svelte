@@ -18,10 +18,14 @@
 
 <style>
   /* The title sizes against its column below the size the design sets, so a
-     long word ("COMMUNITY" is about 6.6em in Impact) fits a phone: the 64px
-     title reached 442px on a 320px screen. 14cqi keeps the design's 64px and
-     115px wherever the column is wide enough, which is every tablet and
-     desktop; a word too long even for that breaks instead of running off. */
+     long word fits a phone: the 64px title reached 442px on a 320px screen.
+     14cqi keeps the design's 64px and 115px wherever the column is at least
+     about 460px wide (every tablet and desktop), and shrinks every title below
+     that, including short ones that would have fit. The factor was sized on
+     the fallback font: Impact has no @font-face here, so Linux (and CI) render
+     a wider face, where "COMMUNITY" is about 6.6em; the system Impact on
+     macOS, iOS and Windows is narrower, so 14cqi is conservative there. A
+     word too long even for that breaks instead of running off. */
   .page-title {
     container-type: inline-size;
   }

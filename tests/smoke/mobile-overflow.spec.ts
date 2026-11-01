@@ -1,4 +1,5 @@
 import { test, expect, type Page } from "@playwright/test";
+import { smokeRoutes } from "./routes";
 
 // No page may be wider than a phone or a tablet, and no text a visitor can see
 // may run past the right edge. Ported from medical-solutions-of-texas
@@ -14,7 +15,8 @@ import { test, expect, type Page } from "@playwright/test";
 // (text wholly past it is a closed menu or a carousel slide parked off-screen,
 // not a cut), and text the browser does not paint (hidden, or opacity 0) is
 // skipped.
-const ROUTES = ["/", "/aed-programs", "/community", "/contact", "/our-story"];
+// Every route in the smoke manifest, so a page added there is checked here too.
+const ROUTES = smokeRoutes.map((r) => r.path);
 const WIDTHS = [320, 390, 768, 820, 1024];
 
 async function gotoLoaded(page: Page, path: string) {
