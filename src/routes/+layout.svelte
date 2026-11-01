@@ -7,19 +7,17 @@
   import "../fonts.css";
   import ContentWidth from "$lib/components/ContentWidth/ContentWidth.svelte";
   import ScreenWidthImage from "$lib/components/ScreenWidth/ScreenWidthImage.svelte";
+  import SiteLogo from "$lib/components/SiteLogo.svelte";
   import RequestInfoModal from "$lib/components/RequestInfoModal.svelte";
-  import { PrismicImage } from "@prismicio/svelte";
   import { asLink } from "@prismicio/client";
   import DefaultButton from "$lib/components/Buttons/DefaultButton.svelte";
   import { fade } from "svelte/transition";
   import { Menu } from "@lucide/svelte";
   import { requestModal } from "$lib/stores/requestModal.svelte";
   import { CONTACT } from "$lib/constants/contact";
-  import { cappedWidths } from "@reddoorla/maintenance/images";
 
   let { children, data }: LayoutProps = $props();
 
-  let viewportWidth = $state(1024);
   let showNav = $state(false);
 
   let content = $derived(data.page.data);
@@ -48,21 +46,15 @@
   {/if}
 </svelte:head>
 
-<svelte:window bind:innerWidth={viewportWidth} />
 <main>
   <nav class="w-screen absolute top-0 left-0 z-20">
     <ContentWidth class="flex flex-row justify-between items-center h-36">
       <a href="/" onclick={() => (showNav = false)}>
-        <PrismicImage
-          field={viewportWidth > 768 ? content.logo : content.logo_mark}
-          widths={cappedWidths(
-            viewportWidth > 768 ? content.logo : content.logo_mark,
-            [160, 320, 480],
-          )}
-          sizes="(min-width: 768px) 220px, 80px"
+        <SiteLogo
+          logo={content.logo}
+          mark={content.logo_mark}
           loading="eager"
           fetchpriority="high"
-          class="w-auto h-10"
         />
       </a>
       <div class="flex flex-row justify-between gap-6 items-center">
@@ -102,16 +94,7 @@
     <footer class="md:h-36 w-screen py-12 bg-white mt-48" in:fade={{ delay: 500 }} out:fade>
       <ContentWidth class="flex flex-col md:flex-row justify-between items-center gap-8">
         <a href="/" onclick={() => (showNav = false)}>
-          <PrismicImage
-            field={viewportWidth > 768 ? content.logo : content.logo_mark}
-            widths={cappedWidths(
-              viewportWidth > 768 ? content.logo : content.logo_mark,
-              [160, 320, 480],
-            )}
-            sizes="(min-width: 768px) 220px, 80px"
-            loading="lazy"
-            class="w-auto h-10"
-          />
+          <SiteLogo logo={content.logo} mark={content.logo_mark} />
         </a>
         <div class="flex flex-col md:flex-row gap-8">
           <a href="mailto:{CONTACT.email}">{CONTACT.email}</a>
