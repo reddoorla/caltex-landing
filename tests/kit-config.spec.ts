@@ -257,8 +257,7 @@ test.describe("routing on kit 3", () => {
       ),
     );
     expect(offenders.map((f) => relative(repoRoot, f))).toEqual([]);
-    const local = readFileSync(join(repoRoot, "src/lib/components/PrismicPreview.svelte"), "utf8");
-    expect(local).toContain("reset: false");
-    expect(local).not.toMatch(/noScroll|keepFocus|invalidateAll/);
+    // How a preview ends (leaves /preview, keeps the scroll position) is
+    // asserted in a browser: tests/smoke/prismic-preview.spec.ts.
   });
 });
