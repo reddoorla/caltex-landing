@@ -250,3 +250,11 @@ The P1-90 fleet census (reddoorla/reddoor-maintenance#1876) blamed `ScreenWidthI
 Seen and not touched: in the cloud container the wordmark SVG fails with `net::ERR_BLOCKED_BY_ORB` on production and on this branch alike, while curl gets a 200 `image/svg+xml`. It is probably the container's proxy; check once in a real browser.
 
 Usage: recorded in the workspace journal entry for this session.
+
+## 2026-11-03 — main into staging with the lockfile regenerated (#111, supersedes #109)
+
+Both staging-flow PRs read `dirty`: #109 (main into staging) and #110 (the promotion that carries #103, P1-90). `main` took Renovate's non-major bump #104 at 11:03am PT, and `staging` had taken lock-file maintenance #105 the day before at 1:15pm PT, so `pnpm-lock.yaml` conflicted in 51 hunks. It was the only conflict. `package.json` was identical on both sides.
+
+#109's head is `main` itself, so there was no branch to resolve the conflict on. The fix pushes nothing to `main`, which would have been a promotion. It follows the staging-flow runbook instead: cut from `staging`, merge `main`, and let `pnpm install` (12.5.1, the pinned `packageManager`) resolve the conflicted lockfile rather than picking a side. Every one of the 26 direct dependencies came out at or above both sides. Four went a patch or minor past both, re-resolved within their ranges: `@lucide/svelte` 1.67.0, `tailwindcss`/`@tailwindcss/vite` 4.3.4, `eslint-plugin-svelte` 3.24.0, `prismic` 1.25.0. Frozen install, lint, check (0 errors), build and `test:smoke` (52 passed) all passed locally.
+
+Belief corrected: the brief said to land with maintenance's `land-prs.mjs`. Its dry run picked `method=squash` for `staging`, and a squash drops `main` as a parent, so #110 would have stayed conflicted, exactly as #88 had to be redone as #89. #111 lands with `PUT pulls/111/merge`, `merge_method=merge`, pinned to the green head.
