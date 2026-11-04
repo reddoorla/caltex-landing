@@ -258,3 +258,14 @@ Both staging-flow PRs read `dirty`: #109 (main into staging) and #110 (the promo
 #109's head is `main` itself, so there was no branch to resolve the conflict on. The fix pushes nothing to `main`, which would have been a promotion. It follows the staging-flow runbook instead: cut from `staging`, merge `main`, and let `pnpm install` (12.5.1, the pinned `packageManager`) resolve the conflicted lockfile rather than picking a side. Every one of the 26 direct dependencies came out at or above both sides. Four went a patch or minor past both, re-resolved within their ranges: `@lucide/svelte` 1.67.0, `tailwindcss`/`@tailwindcss/vite` 4.3.4, `eslint-plugin-svelte` 3.24.0, `prismic` 1.25.0. Frozen install, lint, check (0 errors), build and `test:smoke` (52 passed) all passed locally.
 
 Belief corrected: the brief said to land with maintenance's `land-prs.mjs`. Its dry run picked `method=squash` for `staging`, and a squash drops `main` as a parent, so #110 would have stayed conflicted, exactly as #88 had to be redone as #89. #111 lands with `PUT pulls/111/merge`, `merge_method=merge`, pinned to the green head.
+
+## 2026-11-04 — svelte-select leaves: nothing had imported it since May (#112)
+
+`svelte-select` had been a dead dependency since 2026-05-28. That day `e636275` deleted the 19 unused components that imported it, and `8b8ff80` dropped `svelte-gestures` but not this package. On 11-04 the operator chose removal over a bump to 6, which would mean a Svelte 5 API rewrite for a package nothing renders (workspace `decisions/2026-11-04-1740-select-gestures-keep-or-replace.md`). The dependency goes, and with it the lockfile's `svelte-floating-ui` and `@floating-ui/*`: 38 lines, nothing else. So does the "svelte-select stylings" block in `app.css`, 57 lines up to `.filter-to-dark`. That block held two `::placeholder` rules, deleted with it because `src` has no `<input>`, `<textarea>`, `<form>` or `{@html}` for them to style. `docs/UPGRADE_NOTES.md` stops listing both packages in its stack table, and a line under the table says when each left.
+
+Proof, after a fresh install in a new clone:
+
+- `grep -rn "svelte-select\|svelte-gestures" src` prints nothing.
+- `pnpm lint` is clean, and `pnpm check` gives 0 errors and 0 warnings. `pnpm build` passes, and `pnpm test:smoke` passes 52 of 52.
+- Re-adding `import Select from "svelte-select"` to `slice-simulator/+page.svelte` turned `pnpm check` red: `Cannot find module 'svelte-select'`, 1 error.
+- An Opus review of the diff found it clean.

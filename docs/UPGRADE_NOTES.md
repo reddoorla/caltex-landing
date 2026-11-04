@@ -25,14 +25,16 @@ than starting one from Svelte 4.
 | Vite            | `^8.0.14`                                                                   |
 | Tailwind        | `^4.3.0` via `@tailwindcss/vite ^4.3.0` (CSS-first config in `src/app.css`) |
 | Icons           | `@lucide/svelte ^1.16.0` (FontAwesome removed)                              |
-| Gestures        | `svelte-gestures ^5.2.2` (via `src/lib/utils/swipeAction.ts`)               |
-| Select          | `svelte-select ^5.8.3`                                                      |
 | Maintenance     | `@reddoorla/maintenance ^0.8.0` (published; local link removed)             |
 | Node types      | `@types/node ^22.19.19`                                                     |
 | Package manager | `pnpm@10.33.1`, `engines.node >= 20`                                        |
 
 Verification bar (all green): `pnpm check` → **0 errors**, `pnpm lint` → clean,
 `pnpm build` → succeeds.
+
+Later changes: `svelte-gestures` was dropped on 2026-05-28 (`8b8ff80`), with the sliders
+that used it, and `svelte-select` on 2026-11-04, when nothing imported it any more. Neither
+is a dependency now.
 
 ## What changed, in order
 
