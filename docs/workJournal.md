@@ -258,3 +258,28 @@ Both staging-flow PRs read `dirty`: #109 (main into staging) and #110 (the promo
 #109's head is `main` itself, so there was no branch to resolve the conflict on. The fix pushes nothing to `main`, which would have been a promotion. It follows the staging-flow runbook instead: cut from `staging`, merge `main`, and let `pnpm install` (12.5.1, the pinned `packageManager`) resolve the conflicted lockfile rather than picking a side. Every one of the 26 direct dependencies came out at or above both sides. Four went a patch or minor past both, re-resolved within their ranges: `@lucide/svelte` 1.67.0, `tailwindcss`/`@tailwindcss/vite` 4.3.4, `eslint-plugin-svelte` 3.24.0, `prismic` 1.25.0. Frozen install, lint, check (0 errors), build and `test:smoke` (52 passed) all passed locally.
 
 Belief corrected: the brief said to land with maintenance's `land-prs.mjs`. Its dry run picked `method=squash` for `staging`, and a squash drops `main` as a parent, so #110 would have stayed conflicted, exactly as #88 had to be redone as #89. #111 lands with `PUT pulls/111/merge`, `merge_method=merge`, pinned to the green head.
+
+## 2026-11-04 — svelte-select leaves: nothing had imported it since May (#112)
+
+`svelte-select` had been a dead dependency since 2026-05-28. That day `e636275` deleted the 19 unused components that imported it, and `8b8ff80` dropped `svelte-gestures` but not this package. On 11-04 the operator chose removal over a bump to 6, which would mean a Svelte 5 API rewrite for a package nothing renders (workspace `decisions/2026-11-04-1740-select-gestures-keep-or-replace.md`). The dependency goes, and with it the lockfile's `svelte-floating-ui` and `@floating-ui/*`: 38 lines, nothing else. So does the "svelte-select stylings" block in `app.css`, 57 lines up to `.filter-to-dark`. That block held two `::placeholder` rules, deleted with it because `src` has no `<input>`, `<textarea>`, `<form>` or `{@html}` for them to style. `docs/UPGRADE_NOTES.md` stops listing both packages in its stack table, and a line under the table says when each left.
+
+Proof, after a fresh install in a new clone:
+
+- `grep -rn "svelte-select\|svelte-gestures" src` prints nothing.
+- `pnpm lint` is clean, and `pnpm check` gives 0 errors and 0 warnings. `pnpm build` passes, and `pnpm test:smoke` passes 52 of 52.
+- Re-adding `import Select from "svelte-select"` to `slice-simulator/+page.svelte` turned `pnpm check` red: `Cannot find module 'svelte-select'`, 1 error.
+- An Opus review of the diff found it clean.
+
+## 2026-11-04 — `@prismicio/svelte` 2 → 3 (this PR, into `staging`)
+
+Part of the fleet majors sweep (reddoorla/reddoor-maintenance#1949, phase 2 group A), following the ERP pilot's recipe. It waited for the svelte-select removal (#112), which merged into `staging` at about 10:16am PT, and is cut from that `staging` at `5b1a3a0`. Renovate's own v3 PR was still "Awaiting Schedule" on the Dependency Dashboard (#46).
+
+`@prismicio/svelte` goes from 2.2.4 to 3.2.0. `@prismicio/client`'s specifier goes from `^7.21.8` to `^7.23.0`, v3's peer floor. **No call site needed a change.** The slice simulator already used v3's `{#snippet children({ slices })}` form. Nothing imports `SvelteRichTextSerializer`. The site ships its own `PrismicPreview` copy, so v3's move of the package's copy to the v5 toolbar does not reach it.
+
+Measured on Node 24.22.2, on this branch and on `staging` in a separate worktree. Both had lint clean, `svelte-check` at 0 errors and 0 warnings, and the build green. There is no vitest here; CI's `test:smoke` covers it. All 5 prerendered pages are identical once asset hashes, the kit version, the `__sveltekit_<id>` name, the CSP hash and HTML comments are normalised. That includes the modulepreload count, unlike reddoor-website and Roalson the same day: this site's simulator was already on v3's runes-mode form, so no legacy-mode chunk dropped out. v3 writes 6 `prismic-slice-start` markers across those 5 pages (2 on `/aed-programs`, 1 on each of the others) against 0 on v2. Mutation: putting the v2 `<SliceSimulator let:slices>` slot back gives `svelte-check` `'$$_rotalumiSecilS0.$$slot_def' is of type 'unknown'` on v3, and the same file passes on v2.
+
+The review (runtime, tests, deps) found two nits, both folded in. The marker count above now says how the 6 are spread. `engines.node` goes from `>=20` to `>=22`, the floor v3 and `@prismicio/client` 7.23 declare; CI and Netlify already run 24. The reviewer ran Playwright on `pnpm preview` for both builds: `/` and `/aed-programs` hydrated with 0 console errors, and a client-side navigation between them kept v3's markers without a full reload.
+
+## 2026-11-04 — main brought into staging before the next promotion (this PR)
+
+`main`'s only commit that `staging` lacked was the previous promotion's merge commit, 005781e (#110's promotion merge), so `main` was not an ancestor of `staging` and the next promotion PR would not have been a clean fast path. Maintenance's `scripts/staging-bring-main.mjs` merged `main` into a branch cut from `staging` at `99b0256`, with the site's pinned pnpm passing the lockfile through `pnpm install --lockfile-only`. The merge is tree-identical to `staging` (`git diff origin/staging` was empty before this entry), so nothing a visitor sees changes. It lands as a merge commit, never a squash, so `main` is a parent; the promotion that follows (fleet majors phase 2, group A: reddoorla/reddoor-maintenance#1949) stays the operator's.
