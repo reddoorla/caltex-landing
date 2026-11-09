@@ -48,5 +48,10 @@
     "@prismicio/svelte": "^3.2.0",
     "@zerodevx/svelte-img": "^2.1.2"
   },
-  "packageManager": "pnpm@12.5.1"
+  "packageManager": "pnpm@12.5.1",
+  "reddoor": {
+    "absentFixtures": [
+      "/dev/animate-in"
+    ]
+  }
 }
