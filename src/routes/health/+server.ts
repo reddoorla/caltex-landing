@@ -48,8 +48,9 @@ export const GET: RequestHandler = async ({ fetch }) => {
     // or a probe submission lands as a real lead. `none` declares there is no
     // form, so the nightly form-e2e records n/a instead of listing the site
     // UNCOVERED. The probe checks the claim (it opens /contact and / without
-    // submitting); tests/smoke/health-forms.spec.ts checks it on every PR.
-    // Remove `none` in the PR that adds a form.
+    // submitting), and tests/smoke/health-forms.spec.ts checks the smoke routes
+    // on every PR; a form on any other page is seen by neither. Remove `none`
+    // in the PR that adds a form, wherever it goes.
     testMode: false,
     none: true,
   };
