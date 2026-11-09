@@ -42,6 +42,17 @@ export const GET: RequestHandler = async ({ fetch }) => {
     ingestUrl: !!privateEnv.FORMS_INGEST_URL,
     ingestToken: !!privateEnv.FORMS_INGEST_TOKEN,
     turnstile: !!publicEnv.PUBLIC_TURNSTILE_SITE_KEY?.trim(),
+    // CalTex ships no form: contact is the phone and email in
+    // $lib/constants/contact.ts. testMode is false because nothing forwards the
+    // fleet form-e2e probe's marker, and never true without a form that does,
+    // or a probe submission lands as a real lead. `none` declares there is no
+    // form, so the nightly form-e2e records n/a instead of listing the site
+    // UNCOVERED. The probe checks the claim (it opens /contact and / without
+    // submitting), and tests/smoke/health-forms.spec.ts checks the smoke routes
+    // on every PR; a form on any other page is seen by neither. Remove `none`
+    // in the PR that adds a form, wherever it goes.
+    testMode: false,
+    none: true,
   };
   // We're inside the handler, so the function ran; ok is false only when the
   // Prismic probe actively errored.
