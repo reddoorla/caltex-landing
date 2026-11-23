@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "counts": {
+    "src/lib/components/RequestInfoModal.svelte": {
+      "copy\tclose": 2,
+      "heading\tAED services": 1,
+      "heading\tChoosing our": 1,
+      "heading\tContact": 1,
+      "heading\tat": 1,
+      "heading\tensures your readiness": 1,
+      "heading\tfor emergencies.": 1,
+      "heading\tor leave a message": 1
+    },
+    "src/lib/components/ScreenWidth/ScreenWidthImage.svelte": {
+      "copy\tbackground video": 1,
+      "image\tbackground_placeholder.svg": 1
+    },
+    "src/lib/constants/contact.ts": {
+      "copy\tRyan Kohnen": 1,
+      "email\tryan@ryankohnen.com": 1,
+      "phone\t210-273-7767": 1,
+      "phone\t210.273.7767": 1
+    },
+    "src/lib/slices/ContentWidth/index.svelte": {
+      "copy\t(variation:": 1,
+      "copy\t) Slices": 1,
+      "copy\tPlaceholder component for": 1
+    },
+    "src/lib/slices/Hero/index.svelte": {
+      "copy\t(variation:": 1,
+      "copy\t) Slices": 1,
+      "copy\tPlaceholder component for": 1
+    },
+    "src/lib/slices/ImageAndText/index.svelte": {
+      "copy\tRequest Info": 1
+    },
+    "src/lib/slices/ThreeStepPlan/index.svelte": {
+      "copy\t(variation:": 1,
+      "copy\t) Slices": 1,
+      "copy\tPlaceholder component for": 1
+    },
+    "src/routes/+layout.server.js": {
+      "heading\tCaltex Medical": 1
+    },
+    "src/routes/+layout.svelte": {
+      "copy\tRequest Info": 1,
+      "copy\ttoggle nav": 1,
+      "copy\t| All right reserved": 1,
+      "link\t/": 2
+    },
+    "src/routes/[[preview=preview]]/+page.server.js": {
+      "heading\tCaltex Medical": 1
+    },
+    "src/routes/[[preview=preview]]/[uid]/+page.server.js": {
+      "copy\tPage not found": 1,
+      "heading\t${…} | Caltex Medical": 1
+    }
+  }
+}
