@@ -63,9 +63,9 @@
           <PrismicRichText field={slice.primary.body} components={{ paragraph: StoryParagraph }} />
         </div>
         <div class="mt-12 lg:mt-0">
-          <DefaultButton class="mt-6" onclick={() => requestModal.open()}
-            >Request Info</DefaultButton
-          >
+          <DefaultButton class="mt-6" onclick={() => requestModal.open()}>
+            Request Info
+          </DefaultButton>
         </div>
       {/if}
     </div>

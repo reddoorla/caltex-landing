@@ -40,8 +40,8 @@
       </button>
       <h2 class="text-white">
         <span>Choosing our&nbsp;</span><span> AED services&nbsp;</span><span>
-          ensures your readiness&nbsp;</span
-        ><span> for emergencies.</span>
+          ensures your readiness&nbsp;
+        </span><span> for emergencies.</span>
       </h2>
       <h3 class="text-white">
         Contact {CONTACT.name} at
