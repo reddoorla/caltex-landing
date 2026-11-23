@@ -59,9 +59,9 @@
       </a>
       <div class="flex flex-row justify-between gap-6 items-center">
         <DefaultButton onclick={() => requestModal.open()}>Request Info</DefaultButton>
-        <button onclick={() => (showNav = !showNav)} aria-label="toggle nav"
-          ><Menu size={24} /></button
-        >
+        <button onclick={() => (showNav = !showNav)} aria-label="toggle nav">
+          <Menu size={24} />
+        </button>
       </div>
     </ContentWidth>
   </nav>
@@ -81,8 +81,10 @@
           <a
             class="text-primary hover:brightness-75 transition duration-300"
             onclick={() => (showNav = false)}
-            href={item.href}><h1 class="bump">{item.label}</h1></a
+            href={item.href}
           >
+            <h1 class="bump">{item.label}</h1>
+          </a>
         {/each}
       </ContentWidth>
     </div>
